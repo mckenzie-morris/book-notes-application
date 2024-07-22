@@ -1,14 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    './views/index.ejs', './src/main.js',
+    './views/**/*.ejs', // Scan all EJS files in the views directory
+    './src/**/*.js', // Scan all JS files in the src directory
   ],
 
   theme: {
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+      fontSize: ['responsive'],
+    },
   },
   plugins: [],
 }
