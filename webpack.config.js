@@ -48,7 +48,7 @@ export default {
       directory: path.resolve(__dirname, 'dist'),
     },
     // which port to serve from
-    port: 3000,
+    port: 8080,
     // open a new tab automatically
     open: true,
     // use hot module reloading
