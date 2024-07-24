@@ -6,13 +6,14 @@ module.exports = {
   ],
 
   theme: {
-    extend: {},
-  },
-  variants: {
     extend: {
-      fontSize: ['responsive'],
+      colors: {
+        backgroundTheme: 'rgba(var(--background))',
+        borderTheme: 'rgba(var(--border))',
+        primaryTheme: 'rgba(var(--primary))',
+        secondaryTheme: 'rgba(var(--secondary))',
+      },
     },
   },
   plugins: [],
-}
-
+};

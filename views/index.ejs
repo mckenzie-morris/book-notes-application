@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
-  <body>
-    <div class="flex container mx-auto justify-center">
-      <h1 class="text-2xl sm:text-4xl md:text-6xl lg:text-9xl">
+  <body class="bg-backgroundTheme">
+    <div class="border-4 border-borderTheme h-dvh flex-row container mx-auto justify-center">
+      <h1 class="text-center text-primaryTheme text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl">
         Stuff!
       </h1>
+      <h2 class="text-center text-secondaryTheme text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl">
+        Other stuff
+      </h2>
     </div>
   </body>
 </html>
