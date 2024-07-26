@@ -3,8 +3,24 @@
 @tailwind utilities;
 
 .light {
-    --background: 255, 251, 218;
-    --border: 255, 236, 158;
-    --primary: 255, 187, 112;
-    --secondary: 237, 148, 85;
+    --primary: 255, 251, 218;
+    --secondary: 255, 236, 158;
+    --tertiary: 255, 187, 112;
+    --quaternary: 237, 148, 85;
+}
+
+.dark {
+    --primary: 19, 0, 0;
+    --secondary: 0, 51, 124;
+    --tertiary: 28, 130, 173;
+    --quaternary: 3, 201, 136;
+}
+
+
+
+.josefin-sans-importFont {
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }

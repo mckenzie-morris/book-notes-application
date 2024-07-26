@@ -8,10 +8,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        backgroundTheme: 'rgba(var(--background))',
-        borderTheme: 'rgba(var(--border))',
         primaryTheme: 'rgba(var(--primary))',
         secondaryTheme: 'rgba(var(--secondary))',
+        tertiaryTheme: 'rgba(var(--tertiary))',
+        quaternaryTheme: 'rgba(var(--quaternary))',
       },
     },
   },
