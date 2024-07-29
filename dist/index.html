@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,12 +10,31 @@
       rel="stylesheet"
     />
     <title>Mckenzie's Brewery Notes</title>
-  <script defer src="main2bc3b085bdf11081d56c.js"></script></head>
+  <script defer src="mainaba751e6aeb63a06a362.js"></script></head>
   <body class="bg-primaryTheme">
-    <div class=" absolute end-0 border-2 border-red-600 m-5" style="width: 20px; height: 20px;"></div>
-    <div
-      class="border-4 border-secondaryTheme h-dvh flex-row container mx-auto justify-center"
-    >
+    <div class="flex absolute end-0 m-5" id="themeToggleContainer">
+      <label
+        for="themeToggle"
+        class="flex items-center cursor-pointer select-none"
+      >
+        <div class="relative">
+          <input type="checkbox" id="themeToggle" class="peer sr-only" />
+          <div class="block h-8 rounded-full box bg-tertiaryTheme w-14"></div>
+          <div
+            class="absolute flex items-center justify-center w-6 h-6 transition bg-quaternaryTheme rounded-full dot left-1 top-1 peer-checked:translate-x-full"
+          >
+            <img
+              id="theme_toggle_img"
+              src="dark-icon.svg"
+              ;
+              height="20px"
+              width="20px"
+            />
+          </div>
+        </div>
+      </label>
+    </div>
+    <div class="h-dvh flex-row container mx-auto justify-center">
       <h1
         class="josefin-sans-importFont text-center text-tertiaryTheme pt-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
       >

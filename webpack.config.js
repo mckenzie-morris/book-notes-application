@@ -14,6 +14,7 @@ export default {
     filename: '[name][contenthash].js',
     // clean the output directory before emit
     clean: true,
+    assetModuleFilename: '[name][ext]',
   },
 
   module: {
@@ -33,6 +34,10 @@ export default {
           },
         },
       },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource'
+      }
     ],
   },
   plugins: [
