@@ -58,9 +58,11 @@ export default {
     open: true,
     // use hot module reloading
     hot: true,
-    // enable gzip compression
+    /* enable gzip compression- compression algo that compresses 
+    both static and dynamic files transmitted to client by DevServer (only if
+    'Accept-Encoding' header is present on client's HTTP request) */
     compress: true,
-    //
+    // redirects all 404 responses to index.html file
     historyApiFallback: true,
     // watch for changes in the views directory
     watchFiles: ['views/**/*.ejs'],
