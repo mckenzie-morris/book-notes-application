@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
     <title>Mckenzie's Brewery Notes</title>
-  <script defer src="mainaba751e6aeb63a06a362.js"></script></head>
+  <script defer src="main083cf07b326dd5d823f3.js"></script></head>
   <body class="bg-primaryTheme">
     <div class="flex absolute end-0 m-5" id="themeToggleContainer">
       <label
@@ -19,13 +19,13 @@
       >
         <div class="relative">
           <input type="checkbox" id="themeToggle" class="peer sr-only" />
-          <div class="block h-8 rounded-full box bg-tertiaryTheme w-14"></div>
+          <div class="drop-shadow block h-8 rounded-full box bg-secondaryTheme w-14 border-2 border-tertiaryTheme"></div>
           <div
-            class="absolute flex items-center justify-center w-6 h-6 transition bg-quaternaryTheme rounded-full dot left-1 top-1 peer-checked:translate-x-full"
+            class="absolute flex justify-center w-6 h-6 transition bg-quaternaryTheme rounded-full dot left-1 top-1 peer-checked:translate-x-full"
           >
             <img
-              id="theme_toggle_img"
-              src="dark-icon.svg"
+              id="themeIcon"
+              src="light-icon.svg"
               ;
               height="20px"
               width="20px"
@@ -34,17 +34,21 @@
         </div>
       </label>
     </div>
-    <div class="h-dvh flex-row container mx-auto justify-center">
-      <h1
-        class="josefin-sans-importFont text-center text-tertiaryTheme pt-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
-      >
-        Stuff!
-      </h1>
-      <h2
-        class="josefin-sans-importFont text-center text-quaternaryTheme text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
-      >
-        Other stuff
-      </h2>
+
+    <div class="h-dvh flex flex-col items-center">
+      <h1 class="drop-shadow-dark mt-3 josefin-sans-importFont text-secondaryTheme pt-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl">Title!</h1>
+      <div class="flex flex-col flex-grow justify-center">
+        <h1
+          class="text-center josefin-sans-importFont text-tertiaryTheme pt-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
+        >
+          Stuff!
+        </h1>
+        <h2
+          class="text-center josefin-sans-importFont text-quaternaryTheme pt-3 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
+        >
+          Other stuff
+        </h2>
+      </div>
     </div>
   </body>
 </html>
