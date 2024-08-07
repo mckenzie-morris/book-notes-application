@@ -39,4 +39,12 @@ app.listen(PORT, () => {
 
 // USE https://www.openbrewerydb.org/documentation/
 
-// 
+/* 
+                              (theme toggle)
+              Title
+          
+        My brewery notes (btn)
+  Search for a brewery (btn --> drops down to search bar)
+
+
+*/

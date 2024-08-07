@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,18 +10,20 @@
       rel="stylesheet"
     />
     <title>Mckenzie's Brewery Notes</title>
-  <script defer src="main5689aa3db09ae3f025e5.js"></script></head>
+  <script defer src="main4233f157ea7e61f9426c.js"></script></head>
   <body class="bg-primaryTheme">
-    <div class="flex absolute end-0 m-5" id="themeToggleContainer">
+    <div class="absolute end-0 m-5 flex" id="themeToggleContainer">
       <label
         for="themeToggle"
-        class="flex items-center cursor-pointer select-none"
+        class="flex cursor-pointer select-none items-center"
       >
         <div class="relative">
           <input type="checkbox" id="themeToggle" class="peer sr-only" />
-          <div class="drop-shadow block h-8 rounded-full box bg-secondaryTheme w-14 border-2 border-tertiaryTheme"></div>
           <div
-            class="absolute flex justify-center w-6 h-6 transition bg-quaternaryTheme rounded-full dot left-1 top-1 peer-checked:translate-x-full"
+            class="box block h-5 w-8 rounded-full border-2 border-tertiaryTheme bg-secondaryTheme drop-shadow"
+          ></div>
+          <div
+            class="dot absolute left-1 top-1 flex h-3 w-3 justify-center rounded-full bg-quaternaryTheme transition peer-checked:translate-x-full"
           >
             <img
               id="themeIcon"
@@ -35,16 +37,21 @@
       </label>
     </div>
 
-    <div class="h-dvh flex flex-col items-center">
-      <h1 class="drop-shadow mt-3 josefin-sans-importFont text-secondaryTheme pt-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl">Title!</h1>
-      <div class="flex flex-col flex-grow justify-center">
-        <h1
-          class="text-center text-[150px] josefin-sans-importFont text-tertiaryTheme pt-3 text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
+    <div class="flex h-dvh flex-col items-center">
+      <h1
+        class="josefin-sans-importFont mt-3 pt-3 text-4xl text-secondaryTheme drop-shadow sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
+      >
+        Title!
+      </h1>
+      <div class="flex flex-grow flex-col justify-center">
+        <button
+          type="button"
+          class="mb-2 me-2 rounded-lg bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme px-5 py-2.5 text-center text-sm font-medium text-primaryTheme shadow-lg shadow-tertiaryTheme/80 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-quaternaryTheme"
         >
-          Stuff!
-        </h1>
+          My Brewery Notes
+        </button>
         <h2
-          class="text-center josefin-sans-importFont text-quaternaryTheme pt-3 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
+          class="josefin-sans-importFont pt-3 text-center text-3xl text-quaternaryTheme sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
         >
           Other stuff
         </h2>
