@@ -12,7 +12,7 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body class="bg-primaryTheme">
-    <div class="absolute end-0 m-5 flex" id="themeToggleContainer">
+    <div class="absolute end-0 m-3 flex" id="themeToggleContainer">
       <label
         for="themeToggle"
         class="flex cursor-pointer select-none items-center"
@@ -20,10 +20,10 @@
         <div class="relative">
           <input type="checkbox" id="themeToggle" class="peer sr-only" />
           <div
-            class="box block h-5 w-8 rounded-full border-2 border-tertiaryTheme bg-secondaryTheme drop-shadow"
+            class="box block h-9 w-16 rounded-full border-2 border-tertiaryTheme bg-secondaryTheme shadow-md shadow-tertiaryTheme/80"
           ></div>
           <div
-            class="dot absolute left-1 top-1 flex h-3 w-3 justify-center rounded-full bg-quaternaryTheme transition peer-checked:translate-x-full"
+            class="dot absolute left-1 top-1 flex h-7 w-7 justify-center rounded-full bg-quaternaryTheme transition peer-checked:translate-x-full"
           >
             <img
               id="themeIcon"
@@ -39,22 +39,34 @@
 
     <div class="flex h-dvh flex-col items-center">
       <h1
-        class="josefin-sans-importFont mt-3 pt-3 text-4xl text-secondaryTheme text-shadow text-shadow-tertiaryTheme text-shadow-blur-xl text-shadow-x-3 sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl"
+        class="josefin-sans-importFont text-shadow mt-10 pt-3 text-secondaryTheme text-shadow-blur-xl text-shadow-x-3 text-shadow-tertiaryTheme"
       >
-        Mckenzie's Brewery Notes
+        🍻 Mckenzie's Brewery Notes 🍻
       </h1>
+
       <div class="flex flex-grow flex-col justify-center">
         <button
           type="button"
-          class="mb-2 me-2 rounded-lg bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme px-5 py-2.5 text-center text-sm font-medium text-primaryTheme shadow-lg shadow-tertiaryTheme/80 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-quaternaryTheme"
+          class="mb-2 me-2 w-full rounded-lg bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme px-5 py-2.5 text-center font-medium text-primaryTheme shadow-lg shadow-tertiaryTheme/80 hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-quaternaryTheme"
         >
           My Brewery Notes
         </button>
-        <h2
-          class="josefin-sans-importFont pt-3 text-center text-3xl text-quaternaryTheme sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
-        >
-          Other stuff
-        </h2>
+
+        <form class="mx-auto max-w-sm">
+          <div>
+            <label
+              for="small-input"
+              class="my-3 block text-center font-medium text-tertiaryTheme"
+              >Search for a Brewery</label
+            >
+            <input
+              type="text"
+              id="small-input"
+              placeholder="Type here!"
+              class="block rounded-lg border border-secondaryTheme bg-primaryTheme p-2 text-center text-tertiaryTheme focus:border-quaternaryTheme focus:bg-white"
+            />
+          </div>
+        </form>
       </div>
     </div>
   </body>
