@@ -1,4 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+
+const plugin = require('tailwindcss/plugin')
+const { fluidText } = require('fluid-text-plugin/fluid-text')
+
 module.exports = {
   mode: "jit",
   content: [
@@ -18,5 +22,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@designbycode/tailwindcss-text-shadow")],
+  plugins: [require("@designbycode/tailwindcss-text-shadow"), plugin(fluidText.tailwind.plugin),],
 };
