@@ -1,14 +1,20 @@
 /** @type {import('tailwindcss').Config} */
+import fluid, { extract, screens, fontSize } from "fluid-tailwind";
+
 module.exports = {
-  mode: "jit",
-  content: [
-    /* scan all files (of specified types below) for their use of Tailwind classes.
+  content: {
+    files: [
+      /* scan all files (of specified types below) for their use of Tailwind classes.
     Only the styles actually used will be included the final CSS output */
-    "./views/**/*.ejs", // scan all EJS files in the views directory
-    "./src/**/*.js", // scan all JS files in the src directory
-  ],
+      "./views/**/*.ejs", // scan all EJS files in the views directory
+      "./src/**/*.js", // scan all JS files in the src directory
+    ],
+    extract
+  },
 
   theme: {
+    screens,
+    fontSize,
     extend: {
       colors: {
         primaryTheme: "rgba(var(--primary))",
@@ -18,5 +24,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@designbycode/tailwindcss-text-shadow")],
+  plugins: [require("@designbycode/tailwindcss-text-shadow"), require('fluid-tailwind')],
 };
