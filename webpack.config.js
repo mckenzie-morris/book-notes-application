@@ -57,6 +57,12 @@ export default {
     }),
   ],
   devServer: {
+    proxy: [
+      {
+        context: ['/search'],
+        target: 'http://localhost:3000/',
+      },
+    ],
     static: {
       // serve files from this location
       directory: path.resolve(__dirname, 'dist'),
@@ -78,8 +84,8 @@ export default {
         {from: /^\/$/, to: 'index.html'},
         {from: /^\/notes/, to: '/notes.html'},
       ]
-    }
+    },
     // watch for changes in the views directory
-    // watchFiles: ['views/**/*.ejs'],
+    watchFiles: ['views/**/*.ejs'],
   },
 };

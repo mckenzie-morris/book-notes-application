@@ -19,6 +19,11 @@ app.get('/', (req, res) => {
   return res.sendFile(__dirname + '/dist/index.html');
 });
 
+app.get('/search', async (req, res) => {
+console.log('triggered!')
+res.redirect('/')
+})
+
 // any route not defined is 404'ed
 app.use('*', (req, res) => {
   return res.status(404).send('404: Page not found- you silly goose');
@@ -40,11 +45,10 @@ app.listen(PORT, () => {
 // USE https://www.openbrewerydb.org/documentation/
 
 /* 
-                              (theme toggle)
-              Title
-          
-        My brewery notes (btn)
-  Search for a brewery (btn --> drops down to search bar)
+
+Use devServer.proxy to send HTTP reqs to:
+ https://api.openbrewerydb.org/v1/breweries/autocomplete each time 
+ a character is entered
 
 
 */
