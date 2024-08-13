@@ -8,7 +8,8 @@ const __dirname = path.dirname(__filename);
 
 export default {
   mode: 'development',
-  entry: path.resolve(__dirname, 'src/main.js'),
+  entry: {index: path.resolve(__dirname, 'src/main.js'), notes: path.resolve(__dirname, 'src/notes.js')},
+  
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name][contenthash].js',
@@ -40,11 +41,19 @@ export default {
       }
     ],
   },
+  // 'chunks' specifies which js bundle to inject into the generated HTML file
   plugins: [
     new HtmlWebpackPlugin({
       title: "Mckenzie's Brewery Notes",
       filename: 'index.html',
       template: 'views/index.ejs',
+      chunks: ['index']
+    }),
+    new HtmlWebpackPlugin({
+      title: "Brewery Notes",
+      filename: 'notes.html',
+      template: 'views/notes.ejs',
+      chunks: ['notes']
     }),
   ],
   devServer: {
@@ -63,8 +72,14 @@ export default {
     'Accept-Encoding' header is present on client's HTTP request) */
     compress: true,
     // redirects all 404 responses to index.html file
-    historyApiFallback: true,
+    historyApiFallback: {
+      // serve different files at different endpoints
+      rewrites: [
+        {from: /^\/$/, to: 'index.html'},
+        {from: /^\/notes/, to: '/notes.html'},
+      ]
+    }
     // watch for changes in the views directory
-    watchFiles: ['views/**/*.ejs'],
+    // watchFiles: ['views/**/*.ejs'],
   },
 };
