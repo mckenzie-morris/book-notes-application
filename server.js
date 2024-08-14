@@ -46,9 +46,14 @@ app.listen(PORT, () => {
 
 /* 
 
-Use devServer.proxy to send HTTP reqs to:
- https://api.openbrewerydb.org/v1/breweries/autocomplete each time 
- a character is entered
+**DEBOUNCE** User begins typing in search bar --> when user stops typing for (?) 1000ms, call API -->
+if user begins typing again within the 1000ms timeframe, reset timer --> 
+**CACHE** --> if timer has reached 0, send API call and cache search term and corresponding results -->
+before sending another API call (if time has elapsed) check if search term is included in cache keys -->
+if search term is a cache key, return value (search results) and do not initiate debounce again unless 
+search term has changed --> if search term is not a cache key, make API call
+
+
 
 
 */
