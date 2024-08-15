@@ -20,12 +20,26 @@ $("#themeToggle").on("click", () => {
   }
 });
 
+//////////////////////////////////////////////////////////
+
 $("#search").on('submit', () => {
   console.log('submitted!')
 })
 
-
+// triggerd each time input field changes
 $("#user_input").on("input", () => {
-  console.log($("#user_input").val());
-  $("#search").trigger('submit');
+  
+  if ($("#user_input").val().length) {
+    const debouncer = setTimeout( () => {
+      console.log('Timeout reached, input submitted: ', $("#user_input").val())
+    $("#search").trigger('submit');
+  }, 3000)
+  $("#user_input").on("input", () => {
+    console.log('debounced!')
+    clearTimeout(debouncer)
+  })
+}
 })
+
+
+//////////////////////////////////////////////////////////

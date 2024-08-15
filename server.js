@@ -19,9 +19,11 @@ app.get('/', (req, res) => {
   return res.sendFile(__dirname + '/dist/index.html');
 });
 
-app.get('/search', async (req, res) => {
-console.log('triggered!')
-res.redirect('/')
+app.post('/search', async (req, res) => {
+// console.log(req.body.query)
+console.log('server-side reached')
+res.end()
+
 })
 
 // any route not defined is 404'ed
@@ -52,8 +54,5 @@ if user begins typing again within the 1000ms timeframe, reset timer -->
 before sending another API call (if time has elapsed) check if search term is included in cache keys -->
 if search term is a cache key, return value (search results) and do not initiate debounce again unless 
 search term has changed --> if search term is not a cache key, make API call
-
-
-
 
 */
