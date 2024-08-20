@@ -28,12 +28,14 @@ $("#search").on('submit', () => {
 
 // triggerd each time input field changes
 $("#user_input").on("input", () => {
-  
+  // only trigger debounce function if input value is non-zero
   if ($("#user_input").val().length) {
     const debouncer = setTimeout( () => {
       console.log('Timeout reached, input submitted: ', $("#user_input").val())
     $("#search").trigger('submit');
   }, 3000)
+  /* if user begins typing before necessary time has elapsed, reset timer and 
+  eliminate pending function execution */
   $("#user_input").on("input", () => {
     console.log('debounced!')
     clearTimeout(debouncer)
