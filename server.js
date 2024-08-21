@@ -19,7 +19,8 @@ app.use(express.static("dist"));
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  return res.sendFile(__dirname + "/dist/index.html");
+  // return res.sendFile(__dirname + "/dist/index.html");
+  return res.render("index.ejs", { queryResults: queryResults });
 });
 
 app.post("/search", async (req, res) => {

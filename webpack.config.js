@@ -8,6 +8,9 @@ const __dirname = path.dirname(__filename);
 
 export default {
   mode: "development",
+  /* automatically update the dist folder when source files change.
+  in DevServer, watch mode is enabled by default */
+  watch: true,
   entry: {
     index: path.resolve(__dirname, "src/main.js"),
     notes: path.resolve(__dirname, "src/notes.js"),
@@ -15,7 +18,7 @@ export default {
 
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name][contenthash].js",
+    filename: "[name]-bundle.js",
     // clean the output directory before emit
     clean: true,
     assetModuleFilename: "[name][ext]",
@@ -45,50 +48,50 @@ export default {
     ],
   },
   // 'chunks' specifies which js bundle to inject into the generated HTML file
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: "Mckenzie's Brewery Notes",
-      filename: "index.html",
-      template: "views/index.ejs",
-      chunks: ["index"],
-    }),
-    new HtmlWebpackPlugin({
-      title: "Brewery Notes",
-      filename: "notes.html",
-      template: "views/notes.ejs",
-      chunks: ["notes"],
-    }),
-  ],
-  devServer: {
-    proxy: [
-      {
-        context: ["/search"],
-        target: "http://localhost:3000/",
-      },
-    ],
-    static: {
-      // serve files from this location
-      directory: path.resolve(__dirname, "dist"),
-    },
-    // which port to serve from
-    port: 8080,
-    // open a new tab automatically
-    open: true,
-    // use hot module reloading
-    hot: true,
-    /* enable gzip compression- compression algo that compresses 
-    both static and dynamic files transmitted to client by DevServer (only if
-    'Accept-Encoding' header is present on client's HTTP request) */
-    compress: true,
-    // redirects all 404 responses to index.html file
-    historyApiFallback: {
-      // serve different files at different endpoints
-      rewrites: [
-        { from: /^\/$/, to: "index.html" },
-        { from: /^\/notes/, to: "/notes.html" },
-      ],
-    },
-    // watch for changes in the views directory
-    watchFiles: ["views/**/*.ejs"],
-  },
+  // plugins: [
+  //   new HtmlWebpackPlugin({
+  //     title: "Mckenzie's Brewery Notes",
+  //     filename: "index.html",
+  //     template: "views/index.ejs",
+  //     chunks: ["index"],
+  //   }),
+  //   new HtmlWebpackPlugin({
+  //     title: "Brewery Notes",
+  //     filename: "notes.html",
+  //     template: "views/notes.ejs",
+  //     chunks: ["notes"],
+  //   }),
+  // ],
+  // devServer: {
+  //   proxy: [
+  //     {
+  //       context: ["/search"],
+  //       target: "http://localhost:3000/",
+  //     },
+  //   ],
+  //   static: {
+  //     // serve files from this location
+  //     directory: path.resolve(__dirname, "dist"),
+  //   },
+  //   // which port to serve from
+  //   port: 8080,
+  //   // open a new tab automatically
+  //   open: true,
+  //   // use hot module reloading
+  //   hot: true,
+  //   /* enable gzip compression- compression algo that compresses 
+  //   both static and dynamic files transmitted to client by DevServer (only if
+  //   'Accept-Encoding' header is present on client's HTTP request) */
+  //   compress: true,
+  //   // redirects all 404 responses to index.html file
+  //   historyApiFallback: {
+  //     // serve different files at different endpoints
+  //     rewrites: [
+  //       { from: /^\/$/, to: "index.html" },
+  //       { from: /^\/notes/, to: "/notes.html" },
+  //     ],
+  //   },
+  //   // watch for changes in the views directory
+  //   watchFiles: ["views/**/*.ejs"],
+  // },
 };
