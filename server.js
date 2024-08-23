@@ -11,6 +11,7 @@ const app = express();
 const PORT = 3000;
 
 let queryResults = undefined;
+const queryCache = {};
 
 // serve static files from 'dist' folder in root directory
 app.use(express.static("dist"));
@@ -19,30 +20,38 @@ app.use(express.static("dist"));
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  // return res.sendFile(__dirname + "/dist/index.html");
   return res.render("index.ejs", { queryResults: queryResults });
 });
 
 app.post("/search", async (req, res) => {
+  console.log(req.body)
   console.log(req.body.query);
+  console.log(req.body.currentThemeSetting)
   console.log("server-side reached");
-  const queryParams = req.body.query;
-
-  try {
-    const response = await axios({
-      method: "GET",
-      url: "https://api.openbrewerydb.org/v1/breweries/autocomplete",
-      params: { query: queryParams },
-    });
-    // console.log(response.data);
-    queryResults = response.data;
-
-    return res.render("index.ejs", { queryResults: queryResults });
-    
-  } 
-  catch (error) {
-    console.log(error);
+  const queryParams = req.body.query.toLowerCase().trim();
+  if (queryParams in queryCache) {
+    console.log('found in cache! ', queryCache)
+    queryResults = queryCache[queryParams]
+    return res.render("index.ejs", { queryResults: queryResults, lastQuery: queryParams, lastThemeSetting: req.body.currentThemeSetting });
   }
+  else {
+    try {
+      console.log('NOT found in cache!')
+      const response = await axios({
+        method: "GET",
+        url: "https://api.openbrewerydb.org/v1/breweries/autocomplete",
+        params: { query: queryParams },
+      });
+      // console.log(JSON.stringify(response.data));
+      queryCache[queryParams] = response.data
+      return res.render("index.ejs", { queryResults: response.data, lastQuery: queryParams, lastThemeSetting: req.body.currentThemeSetting });
+    } 
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+
 });
 
 // any route not defined is 404'ed

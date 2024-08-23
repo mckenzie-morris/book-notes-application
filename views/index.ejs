@@ -53,6 +53,7 @@
         </button>
 
         <form id="search" action="/search" method="POST">
+          <input type="hidden" id="currentThemeSetting" name="currentThemeSetting" value="">
           <div class="flex flex-col">
             <label
               for="user_input"
@@ -61,8 +62,9 @@
             >
             <input
               <% if (locals.queryResults) { %>
-                <%= console.log(queryResults) %>
+                data-last_query="<%=lastQuery%>"
                data-query_results="<%=JSON.stringify(queryResults)%>"
+               data-last_theme="<%=lastThemeSetting %>"
               <% } %>
               type="text"
               id="user_input"

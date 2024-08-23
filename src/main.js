@@ -22,41 +22,53 @@ $("#themeToggle").on("click", () => {
 
 //////////////////////////////////////////////////////////
 
-$(() => {
-  // Use .attr() instead of .data() to get the raw data attribute value
-  const queryResultsJsonString = $('#user_input').attr('data-query_results');
-  // console.log(queryResultsJsonString)
-  
-  if (queryResultsJsonString) {
-    // Parse the JSON string back into an object/array
-    const parsedResults = JSON.parse(queryResultsJsonString);
-    // console.log(parsedResults);  // This should log your queryResults array
-  } else {
-    // console.log('No query results found');
+const serverData = $("#user_input").data();
+
+console.log(serverData);
+
+if (serverData.last_query) {
+  const queryResults = $("#user_input").data().query_results;
+  const lastQuery = $("#user_input").data().last_query;
+  //////////////////////// *** YOU ARE HERE *** ////////////////////////
+
+  const lastTheme = $("#user_input").data().last_theme;
+  console.log(queryResults)
+  console.log(lastQuery)
+  console.log(lastTheme)
+  const currentThemeSetting = $('html').attr('class')
+  if (currentThemeSetting != lastTheme) {
+    $("html").toggleClass(`${currentThemeSetting} ${lastTheme}`);
+    $("#themeToggleContainer").toggleClass(`${currentThemeSetting} ${lastTheme}`);
   }
+  
+   //////////////////////// *** YOU ARE HERE *** ////////////////////////
+  $("#user_input").trigger("focus");
+  $("#user_input").val(lastQuery);
+}
+
+
+
+$("#search").on("submit", () => {
+  console.log("submitted!");
+
+
 });
-
-
-$("#search").on('submit', () => {
-  console.log('submitted!')
-})
 
 // triggerd each time input field changes
 $("#user_input").on("input", () => {
   // only trigger debounce function if input value is non-zero
   if ($("#user_input").val().length) {
-    const debouncer = setTimeout( () => {
-      console.log('Timeout reached, input submitted: ', $("#user_input").val())
-    $("#search").trigger('submit');
-  }, 1000)
-  /* if user begins typing before necessary time has elapsed, reset timer and 
+    const debouncer = setTimeout(() => {
+      // console.log('Timeout reached, input submitted: ', $("#user_input").val())
+      $("#search").trigger("submit");
+    }, 1500);
+    /* if user begins typing before necessary time has elapsed, reset timer and 
   eliminate pending function execution */
-  $("#user_input").on("input", () => {
-    console.log('debounced!')
-    clearTimeout(debouncer)
-  })
-}
-})
-
+    $("#user_input").on("input", () => {
+      // console.log('debounced!')
+      clearTimeout(debouncer);
+    });
+  }
+});
 
 //////////////////////////////////////////////////////////
