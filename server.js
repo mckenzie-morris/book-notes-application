@@ -34,7 +34,7 @@ app.post("/search", async (req, res) => {
       url: "https://api.openbrewerydb.org/v1/breweries/autocomplete",
       params: { query: queryParams },
     });
-    console.log(response.data);
+    // console.log(response.data);
     queryResults = response.data;
 
     return res.render("index.ejs", { queryResults: queryResults });

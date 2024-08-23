@@ -22,6 +22,21 @@ $("#themeToggle").on("click", () => {
 
 //////////////////////////////////////////////////////////
 
+$(() => {
+  // Use .attr() instead of .data() to get the raw data attribute value
+  const queryResultsJsonString = $('#user_input').attr('data-query_results');
+  // console.log(queryResultsJsonString)
+  
+  if (queryResultsJsonString) {
+    // Parse the JSON string back into an object/array
+    const parsedResults = JSON.parse(queryResultsJsonString);
+    // console.log(parsedResults);  // This should log your queryResults array
+  } else {
+    // console.log('No query results found');
+  }
+});
+
+
 $("#search").on('submit', () => {
   console.log('submitted!')
 })
@@ -33,7 +48,7 @@ $("#user_input").on("input", () => {
     const debouncer = setTimeout( () => {
       console.log('Timeout reached, input submitted: ', $("#user_input").val())
     $("#search").trigger('submit');
-  }, 3000)
+  }, 1000)
   /* if user begins typing before necessary time has elapsed, reset timer and 
   eliminate pending function execution */
   $("#user_input").on("input", () => {

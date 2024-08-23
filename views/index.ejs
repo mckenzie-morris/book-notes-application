@@ -60,23 +60,27 @@
               >Search for a Brewery</label
             >
             <input
+              <% if (locals.queryResults) { %>
+                <%= console.log(queryResults) %>
+               data-query_results="<%=JSON.stringify(queryResults)%>"
+              <% } %>
               type="text"
               id="user_input"
               name="query"
               placeholder="Type here!"
-              class="mt-1 block rounded-lg border border-secondaryTheme bg-primaryTheme p-2 text-center text-tertiaryTheme focus:border-quaternaryTheme focus:bg-white"
+              class="focus:outline-none focus:ring-2 focus:ring-tertiaryTheme focus:shadow-2xl focus:shadow-tertiaryTheme my-1 border border-secondaryTheme bg-primaryTheme p-2 text-center text-tertiaryTheme focus:bg-white "
             />
             <div
-              class="grid grid-cols-1 divide-y divide-secondaryTheme bg-white text-center text-tertiaryTheme"
+              class=" grid grid-cols-1 divide-y divide-secondaryTheme bg-white text-center text-tertiaryTheme"
             >
             <% if (locals.queryResults) { %>
               <% queryResults.forEach( (elmt) => { %>
-                <div><%= elmt.name %></div> 
+                <div class="flex items-center justify-center min-h-full py-2 px-4 shadow-md shadow-tertiaryTheme hover:text-shadow text-shadow-blur-xl text-shadow-tertiaryTheme "><%= elmt.name %></div> 
                 <% }) %>
             <% } %>
               
 
-            </div>
+                </div>
           </div>
         </form>
       </div>
