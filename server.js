@@ -24,34 +24,37 @@ app.get("/", (req, res) => {
 });
 
 app.post("/search", async (req, res) => {
-  console.log(req.body)
-  console.log(req.body.query);
-  console.log(req.body.currentThemeSetting)
+  console.log(req.body);
   console.log("server-side reached");
+  const lastTheme = req.body.currentThemeSetting
   const queryParams = req.body.query.toLowerCase().trim();
   if (queryParams in queryCache) {
-    console.log('found in cache! ', queryCache)
-    queryResults = queryCache[queryParams]
-    return res.render("index.ejs", { queryResults: queryResults, lastQuery: queryParams, lastThemeSetting: req.body.currentThemeSetting });
-  }
-  else {
+    console.log("found in cache! ", queryCache);
+    queryResults = queryCache[queryParams];
+    return res.render("index.ejs", {
+      queryResults: queryResults,
+      lastQuery: queryParams,
+      lastTheme: lastTheme
+    });
+  } else {
     try {
-      console.log('NOT found in cache!')
+      console.log("NOT found in cache!");
       const response = await axios({
         method: "GET",
         url: "https://api.openbrewerydb.org/v1/breweries/autocomplete",
         params: { query: queryParams },
       });
       // console.log(JSON.stringify(response.data));
-      queryCache[queryParams] = response.data
-      return res.render("index.ejs", { queryResults: response.data, lastQuery: queryParams, lastThemeSetting: req.body.currentThemeSetting });
-    } 
-    catch (error) {
+      queryCache[queryParams] = response.data;
+      return res.render("index.ejs", {
+        queryResults: response.data,
+        lastQuery: queryParams,
+        lastTheme: lastTheme
+      });
+    } catch (error) {
       console.log(error);
     }
   }
-
-
 });
 
 // any route not defined is 404'ed

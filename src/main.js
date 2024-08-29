@@ -5,7 +5,7 @@ import $ from "jquery";
 
 // on document ready
 $(() => {
-  // initialize the html to dark theme
+  // initialize the html to light theme
   $("html").addClass("light");
   $("#themeToggleContainer").addClass("light");
 });
@@ -29,29 +29,21 @@ console.log(serverData);
 if (serverData.last_query) {
   const queryResults = $("#user_input").data().query_results;
   const lastQuery = $("#user_input").data().last_query;
-  //////////////////////// *** YOU ARE HERE *** ////////////////////////
 
-  const lastTheme = $("#user_input").data().last_theme;
-  console.log(queryResults)
-  console.log(lastQuery)
-  console.log(lastTheme)
-  const currentThemeSetting = $('html').attr('class')
-  if (currentThemeSetting != lastTheme) {
-    $("html").toggleClass(`${currentThemeSetting} ${lastTheme}`);
-    $("#themeToggleContainer").toggleClass(`${currentThemeSetting} ${lastTheme}`);
-  }
-  
-   //////////////////////// *** YOU ARE HERE *** ////////////////////////
+///////////////////*****YOU ARE HERE*****///////////////////
+
+  const lastTheme = $("#user_input").data().last_theme
+  $("html").toggleClass(`${$('html')[0].className} ${lastTheme}`)
+
+///////////////////*****YOU ARE HERE*****///////////////////
+
   $("#user_input").trigger("focus");
   $("#user_input").val(lastQuery);
 }
 
-
-
 $("#search").on("submit", () => {
   console.log("submitted!");
-
-
+  $('#currentThemeSetting').val($('html')[0].className)
 });
 
 // triggerd each time input field changes
