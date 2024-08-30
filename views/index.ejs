@@ -54,39 +54,47 @@
 
         <form id="search" action="/search" method="POST">
           <input type="hidden" id="currentThemeSetting" name="currentThemeSetting" value="">
-          <div class="flex flex-col">
-            <label
-              for="user_input"
-              class="my-3 block text-nowrap text-center font-medium text-tertiaryTheme"
-              >Search for a Brewery</label
-            >
-            <input
-              <% if (locals.queryResults) { %>
-                data-last_query="<%=lastQuery%>"
-               data-query_results="<%=JSON.stringify(queryResults)%>"
-               data-last_theme="<%=lastTheme%>"
-              <% } %>
-              type="text"
-              id="user_input"
-              name="query"
-              placeholder="Type here!"
-              class="focus:outline-none focus:ring-2 focus:ring-tertiaryTheme focus:shadow-2xl focus:shadow-tertiaryTheme my-1 border border-secondaryTheme bg-primaryTheme p-2 text-center text-tertiaryTheme focus:bg-white "
-            />
-            <div
-              class=" grid grid-cols-1 divide-y divide-secondaryTheme bg-white text-center text-tertiaryTheme"
-            >
-            <% if (locals.queryResults) { %>
-              <% queryResults.forEach( (elmt) => { %>
-                <div class="flex items-center justify-center min-h-full py-2 px-4 shadow-md shadow-tertiaryTheme hover:text-shadow text-shadow-blur-xl text-shadow-tertiaryTheme hover:cursor-pointer"><%= elmt.name %></div> 
-                <% }) %>
-            <% } %>
-              
-
-                </div>
-          </div>
+            <div class="flex flex-col">
+                <label
+                for="user_input"
+                class="my-3 block text-nowrap text-center font-medium text-tertiaryTheme"
+                >Search for a Brewery</label>
+              <input
+                <% if (locals.queryResults) { %>
+                  data-last_query="<%=lastQuery%>"
+                data-query_results="<%=JSON.stringify(queryResults)%>"
+                data-last_theme="<%=lastTheme%>"
+                <% } %>
+                type="text"
+                id="user_input"
+                name="query"
+                placeholder="Type here!"
+                class="focus:outline-none focus:ring-2 focus:ring-tertiaryTheme focus:shadow-2xl focus:shadow-tertiaryTheme my-1 border border-secondaryTheme bg-primaryTheme p-2 text-center text-tertiaryTheme focus:bg-white "
+              />
+              <div class=" grid grid-cols-1 divide-y divide-secondaryTheme bg-white text-center text-tertiaryTheme">
+                <% if (locals.queryResults) { %>
+                  <% queryResults.forEach( (elmt) => { %>
+                    <div class="queryResultItem flex items-center justify-center min-h-full py-2 px-4 shadow-md shadow-tertiaryTheme hover:text-shadow text-shadow-blur-xl text-shadow-tertiaryTheme hover:cursor-pointer"><%= elmt.name %></div> 
+                    <% }) %>
+                <% } %>
+              </div>
+            </div>
         </form>
+            <!-- Modal -->
+     <!-- Modal wrapper -->
+     <div id="modalWrapper" class="fixed self-center hidden">
+      <div class=""></div>
+        <!-- Modal box -->
+         <div class="rounded-3xl flex flex-col h-[500px] w-[750px] bg-secondaryTheme">
+          <h1 class="self-center text-center">Modal</h1>
+          <textarea class="min-h-min"></textarea>
+          <button id="closeModal" class="self-center bg-red-600 rounded">Close</button>
+         </div>
+     </div>
       </div>
     </div>
+
+     
     <script src="index-bundle.js"></script>
   </body>
 </html>

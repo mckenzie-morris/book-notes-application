@@ -75,3 +75,13 @@ $("#user_input").on("input", () => {
     });
   }
 });
+
+/////////////////////////////////////////////////////////////////////////
+
+$('.queryResultItem').on('click', () => {
+  $('#modalWrapper').removeClass('hidden')
+})
+
+$('#closeModal').on('click', () => {
+  $('#modalWrapper').addClass('hidden')
+})
