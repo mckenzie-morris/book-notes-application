@@ -78,8 +78,10 @@ $("#user_input").on("input", () => {
 
 /////////////////////////////////////////////////////////////////////////
 
-$('.queryResultItem').on('click', () => {
+$('.queryResultItem').on('click', function () {
   $('#modalWrapper').removeClass('hidden')
+  console.log($(this).text())
+  $('#modalBrewerySelection').text($(this).text())
 })
 
 $('#closeModal').on('click', () => {
