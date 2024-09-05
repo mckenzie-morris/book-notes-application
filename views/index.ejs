@@ -12,8 +12,8 @@
     <title>Mckenzie's Brewery Notes</title>
   </head>
   <body class="bg-primaryTheme">
-    <div class=" flex h-dvh w-fit flex-col items-center">
-      <div class="relative">
+    <div class="flex h-dvh w-full flex-col items-center">
+      <div class="relative w-full">
         <div class="absolute end-0 m-3 flex" id="themeToggleContainer">
           <label
             for="themeToggle"
@@ -39,63 +39,89 @@
           </label>
         </div>
         <h1
-          class="josefin-sans-importFont text-shadow mx-3 mb-10 mt-12 pt-10 text-secondaryTheme text-shadow-blur-xl text-shadow-x-3 text-shadow-tertiaryTheme ~/3xl:~text-5xl/8xl 2xl:text-nowrap 3xl:text-[7.5rem]"
+          class="josefin-sans-importFont text-shadow mx-3 mb-10 mt-12 pt-10 text-center text-secondaryTheme text-shadow-blur-xl text-shadow-x-3 text-shadow-tertiaryTheme ~/3xl:~text-5xl/8xl 2xl:text-nowrap 3xl:text-[7.5rem]"
         >
           🍻&nbsp;Mckenzie's Brewery Notes&nbsp;🍻
         </h1>
       </div>
-      <div class="flex flex-col ~/3xl:~text-xl/5xl">
-        <div class="rounded-xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme hover:bg-gradient-to-br p-2">
-          <button
-            type="button"
-            class="bg-secondaryTheme me-2 w-full rounded-lg px-5 py-2.5 text-center font-medium text-tertiaryTheme shadow-lg shadow-tertiaryTheme/80"
+      <div class="flex flex-1 flex-col items-center justify-center">
+        <div class="flex flex-col ~/3xl:~text-xl/5xl items-center">
+          <div
+            class="min-w-fit rounded-xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 hover:bg-gradient-to-br"
           >
-            My Brewery Notes
-          </button>
-        </div>
+            <button
+              type="button"
+              class="min-w-full me-2 rounded-lg bg-secondaryTheme px-5 py-2.5 text-center font-medium text-tertiaryTheme shadow-lg shadow-tertiaryTheme/80"
+            >
+              My Brewery Notes
+            </button>
+          </div>
 
-        <form id="search" action="/search" method="POST">
-          <input type="hidden" id="currentThemeSetting" name="currentThemeSetting" value="">
+          <form id="search" action="/search" method="POST">
+            <input
+              type="hidden"
+              id="currentThemeSetting"
+              name="currentThemeSetting"
+              value=""
+            />
             <div class="flex flex-col">
-                <label
+              <label
                 for="user_input"
-                class="my-3 pt-10 block text-nowrap text-center font-medium text-tertiaryTheme"
-                >Search for a Brewery</label>
+                class="my-3 block text-nowrap pt-10 text-center font-medium text-tertiaryTheme"
+                >Search for a Brewery</label
+              >
               <input
                 <% if (locals.lastQuery) { %>
                   data-last_query="<%=lastQuery%>"
-                data-query_results="<%=JSON.stringify(queryResults)%>"
-                data-last_theme="<%=lastTheme%>"
+                  data-query_results="<%=JSON.stringify(queryResults)%>"
+                  data-last_theme="<%=lastTheme%>"
                 <% } %>
                 type="text"
                 id="user_input"
                 name="query"
                 placeholder="Type here!"
-                class="focus:outline-none focus:ring-2 focus:ring-tertiaryTheme my-1 border border-secondaryTheme bg-primaryTheme p-2 leading-none text-center text-tertiaryTheme focus:bg-white "
+                class="my-1 border border-secondaryTheme bg-primaryTheme p-2 text-center leading-none text-tertiaryTheme focus:bg-white focus:outline-none focus:ring-2 focus:ring-tertiaryTheme"
               />
-              <div class=" grid grid-cols-1 divide-y divide-secondaryTheme text-center text-tertiaryTheme">
+              <div
+                class="grid grid-cols-1 divide-y divide-secondaryTheme text-center text-tertiaryTheme"
+              >
                 <% if (locals.queryResults) { let idx = 1 %>
                   <% queryResults.forEach( (elmt) => { %>
                     <div class="text-wrap queryResultItem flex items-center justify-center min-h-full py-2 px-3 shadow-md shadow-tertiaryTheme hover:text-shadow text-shadow-blur-xl text-shadow-tertiaryTheme hover:cursor-pointer hover:bg-quaternaryTheme hover:text-primaryTheme hover:scale-110"><%= idx %>.&nbsp;<%= elmt.name %></div> 
-                    <%  idx++ }) %>
+                  <%  idx++ }) %>
                 <% } %>
               </div>
             </div>
-        </form>
-            <!-- Modal -->
-        <!-- Modal wrapper -->
-        <div id="modalWrapper" class="fixed self-center hidden rounded-3xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 shadow-xl shadow-tertiaryTheme/80">
+          </form>
+          <!-- Modal -->
+          <!-- Modal wrapper -->
+          <div
+            id="modalWrapper"
+            class="fixed hidden self-center rounded-3xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 shadow-xl shadow-tertiaryTheme/80"
+          >
             <!-- Modal box -->
-              <div class="rounded-2xl flex flex-col ~h-[20rem]/[40rem] ~w-[25rem]/[60rem] bg-secondaryTheme">
-                <h1 id="modalBrewerySelection" class="p-3 self-center text-center text-tertiaryTheme"></h1>
-                <textarea class="bg-primaryTheme mx-2 my-auto min-h-[60%]"></textarea>
-                <button id="closeModal" class="self-center bg-red-600 rounded mb-3">Close</button>
-              </div>
+            <div
+              class="flex flex-col rounded-2xl bg-secondaryTheme ~h-[20rem]/[40rem] ~w-[25rem]/[60rem]"
+            >
+              <h1
+                id="modalBrewerySelection"
+                class="self-center p-3 text-center text-tertiaryTheme"
+              ></h1>
+              <textarea
+                class="mx-2 my-auto min-h-[60%] bg-primaryTheme"
+              ></textarea>
+              <button
+                id="closeModal"
+                class="mb-3 self-center rounded bg-red-600"
+              >
+                Close
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-     
     <script src="index-bundle.js"></script>
   </body>
 </html>
