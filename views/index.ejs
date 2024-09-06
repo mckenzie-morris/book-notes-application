@@ -44,7 +44,7 @@
             </label>
           </div>
           <h1
-            class="josefin-sans-importFont text-shadow mx-3 mb-10 mt-12 pt-10 text-center text-secondaryTheme text-shadow-blur-xl text-shadow-x-3 text-shadow-tertiaryTheme ~/3xl:~text-5xl/8xl 2xl:text-nowrap 3xl:text-[7.5rem]"
+            class="josefin-sans-importFont font-black text-shadow mx-3 mb-10 mt-12 pt-10 text-center text-secondaryTheme text-shadow-blur-xl text-shadow-x-3 text-shadow-tertiaryTheme ~/3xl:~text-5xl/8xl 2xl:text-nowrap 3xl:text-[7.5rem]"
           >
             🍻&nbsp;Mckenzie's Brewery Notes&nbsp;🍻
           </h1>
@@ -58,7 +58,7 @@
         >
           <button
             type="button"
-            class="me-2 min-w-full rounded-lg bg-secondaryTheme px-5 py-2.5 text-center font-medium text-tertiaryTheme shadow-lg shadow-tertiaryTheme/80"
+            class="josefin-sans-importFont font-extrabold me-2 min-w-full rounded-lg bg-secondaryTheme px-5 py-2.5 text-center text-tertiaryTheme shadow-lg shadow-tertiaryTheme/80"
           >
             My Brewery Notes
           </button>
@@ -74,7 +74,7 @@
           <div class="flex flex-col">
             <label
               for="user_input"
-              class="my-3 block text-nowrap pt-10 text-center font-medium text-tertiaryTheme"
+              class="josefin-sans-importFont my-3 block text-nowrap pt-10 text-center font-extrabold text-tertiaryTheme"
               >Search for a Brewery</label
             >
             <input
@@ -94,7 +94,7 @@
             >
               <% if (locals.queryResults) { let idx = 1 %>
                 <% queryResults.forEach( (elmt) => { %>
-                  <div class="max-w-[450px] queryResultItem flex items-center justify-center min-h-full py-2 px-3 shadow-md shadow-tertiaryTheme hover:text-shadow text-shadow-blur-xl text-shadow-tertiaryTheme hover:cursor-pointer hover:bg-quaternaryTheme hover:text-primaryTheme hover:scale-110"><%= idx %>.&nbsp;<%= elmt.name %></div> 
+                  <div class="max-w-[450px] queryResultItem flex josefin-sans-importFont font-bold items-center justify-center min-h-full py-2 px-3 shadow-md shadow-tertiaryTheme hover:text-shadow text-shadow-blur-xl text-shadow-tertiaryTheme hover:cursor-pointer hover:bg-quaternaryTheme hover:text-primaryTheme hover:scale-110"><%= idx %>.&nbsp;<%= elmt.name %></div> 
                 <%  idx++ }) %>
               <% } %>
             </div>
@@ -109,16 +109,24 @@
       >
         <!-- Modal box -->
         <div
-          class="flex flex-col rounded-2xl bg-secondaryTheme ~h-[20rem]/[40rem] ~w-[25rem]/[60rem]"
+          class="flex flex-col rounded-2xl bg-secondaryTheme ~h-[20rem]/[35rem] ~w-[25rem]/[50rem]"
         >
           <h1
             id="modalBrewerySelection"
-            class="self-center p-3 text-center text-tertiaryTheme"
+            class="josefin-sans-importFont font-extrabold self-center p-3 text-center text-tertiaryTheme ~text-xl/5xl"
           ></h1>
+          <div>
+            <h2 class="josefin-sans-importFont font-extrabold text-quaternaryTheme ~text-xl/5xl p-3">Rating:</h2>
+          </div>
           <textarea class="mx-2 my-auto min-h-[60%] bg-primaryTheme"></textarea>
-          <button id="closeModal" class="mb-3 self-center rounded bg-red-600">
-            Close
-          </button>
+          <div class="flex p-3">
+            <button id="closeModal" class="py-2 px-4 border border-gray-400 font-semibold rounded bg-red-600 shadow">
+              Close
+            </button>
+            <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+              B
+            </button>
+          </div>
         </div>
       </div>
     </div>
