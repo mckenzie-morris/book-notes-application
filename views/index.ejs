@@ -94,7 +94,7 @@
             >
               <% if (locals.queryResults) { let idx = 1 %>
                 <% queryResults.forEach( (elmt) => { %>
-                  <div class="queryResultItem flex items-center justify-center min-h-full py-2 px-3 shadow-md shadow-tertiaryTheme hover:text-shadow text-shadow-blur-xl text-shadow-tertiaryTheme hover:cursor-pointer hover:bg-quaternaryTheme hover:text-primaryTheme hover:scale-110"><%= idx %>.&nbsp;<%= elmt.name %></div> 
+                  <div class="max-w-[450px] queryResultItem flex items-center justify-center min-h-full py-2 px-3 shadow-md shadow-tertiaryTheme hover:text-shadow text-shadow-blur-xl text-shadow-tertiaryTheme hover:cursor-pointer hover:bg-quaternaryTheme hover:text-primaryTheme hover:scale-110"><%= idx %>.&nbsp;<%= elmt.name %></div> 
                 <%  idx++ }) %>
               <% } %>
             </div>
