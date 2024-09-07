@@ -13,9 +13,7 @@
   </head>
   <body class="bg-primaryTheme">
     <!-- Entire Screen Container -->
-    <div
-      class="relative flex h-dvh w-full flex-col items-center"
-    >
+    <div class="relative flex h-dvh w-full flex-col items-center">
       <!-- Hero & Theme Control Container -->
       <div class="absolute top-0 w-full">
         <div class="relative flex w-full justify-center self-start">
@@ -44,7 +42,7 @@
             </label>
           </div>
           <h1
-            class="josefin-sans-importFont font-black text-shadow mx-3 mb-10 mt-12 pt-10 text-center text-secondaryTheme text-shadow-blur-xl text-shadow-x-3 text-shadow-tertiaryTheme ~/3xl:~text-5xl/8xl 2xl:text-nowrap 3xl:text-[7.5rem]"
+            class="josefin-sans-importFont text-shadow mx-3 mb-10 mt-12 pt-10 text-center font-black text-secondaryTheme text-shadow-blur-xl text-shadow-x-3 text-shadow-tertiaryTheme ~/3xl:~text-5xl/8xl 2xl:text-nowrap 3xl:text-[7.5rem]"
           >
             🍻&nbsp;Mckenzie's Brewery Notes&nbsp;🍻
           </h1>
@@ -54,11 +52,11 @@
       <!-- button container, button, and input -->
       <div class="absolute top-[40%] ~text-lg/4xl">
         <div
-          class="min-w-fit rounded-xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 hover:bg-gradient-to-br"
+          class="min-w-fit rounded-xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 shadow-xl shadow-tertiaryTheme/50 hover:bg-gradient-to-br active:scale-95 active:shadow-inner"
         >
           <button
             type="button"
-            class="josefin-sans-importFont font-extrabold me-2 min-w-full rounded-lg bg-secondaryTheme px-5 py-2.5 text-center text-tertiaryTheme shadow-lg shadow-tertiaryTheme/80"
+            class="josefin-sans-importFont me-2 min-w-full rounded-lg bg-secondaryTheme px-5 py-2.5 text-center font-extrabold text-tertiaryTheme active:shadow-inner"
           >
             My Brewery Notes
           </button>
@@ -94,10 +92,10 @@
             >
               <% if (locals.queryResults) { let idx = 1 %>
                 <% queryResults.forEach( (elmt) => { %>
-                  <div class="max-w-[450px] queryResultItem flex josefin-sans-importFont font-bold items-center justify-center min-h-full py-2 px-3 shadow-md shadow-tertiaryTheme hover:text-shadow text-shadow-blur-xl text-shadow-tertiaryTheme hover:cursor-pointer hover:bg-quaternaryTheme hover:text-primaryTheme hover:scale-110"><%= idx %>.&nbsp;<%= elmt.name %></div> 
+                  <div class="max-w-[450px] queryResultItem flex josefin-sans-importFont font-bold items-center justify-center min-h-full py-2 px-3 shadow-md shadow-tertiaryTheme hover:text-shadow text-shadow-blur-xl text-shadow-tertiaryTheme hover:cursor-pointer hover:bg-quaternaryTheme hover:text-primaryTheme hover:scale-110 active:scale-100"><%= idx %>.&nbsp;<%= elmt.name %></div> 
                 <%  idx++ }) %>
               <% } %>
-            </div>
+          </div>
           </div>
         </form>
       </div>
@@ -105,7 +103,7 @@
       <!-- Modal wrapper -->
       <div
         id="modalWrapper"
-        class="fixed hidden self-center rounded-3xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 shadow-xl shadow-tertiaryTheme/80"
+        class="fixed hidden self-center rounded-3xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 shadow-xl shadow-tertiaryTheme"
       >
         <!-- Modal box -->
         <div
@@ -113,18 +111,31 @@
         >
           <h1
             id="modalBrewerySelection"
-            class="josefin-sans-importFont font-extrabold self-center p-3 text-center text-tertiaryTheme ~text-xl/5xl"
+            class="josefin-sans-importFont self-center p-3 text-center font-extrabold text-tertiaryTheme ~text-xl/5xl"
           ></h1>
           <div>
-            <h2 class="josefin-sans-importFont font-extrabold text-quaternaryTheme ~text-xl/5xl p-3">Rating:</h2>
+            <h2
+              class="josefin-sans-importFont p-3 font-extrabold text-quaternaryTheme ~text-xl/5xl"
+            >
+              Rating:
+            </h2>
           </div>
-          <textarea class="mx-2 my-auto min-h-[60%] bg-primaryTheme"></textarea>
-          <div class="flex p-3">
-            <button id="closeModal" class="py-2 px-4 border border-gray-400 font-semibold rounded bg-red-600 shadow">
+          <textarea
+            class="mx-2 my-auto min-h-[50%] bg-primaryTheme font-medium text-quaternaryTheme"
+          ></textarea>
+          <div
+            class="josefin-sans-importFont flex flex-grow items-center justify-evenly p-3 ~text-base/3xl"
+          >
+            <button
+              id="closeModal"
+              class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:bg-gradient-to-br active:scale-95 active:shadow-inner"
+            >
               Close
             </button>
-            <button class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-              B
+            <button
+              class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:bg-gradient-to-r active:scale-95 active:shadow-inner"
+            >
+              Post Review!
             </button>
           </div>
         </div>
