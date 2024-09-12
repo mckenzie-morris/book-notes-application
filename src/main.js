@@ -1,3 +1,4 @@
+import 'animate.css';
 import "./styles.css";
 import lightModeIcon from "./assets/light-icon.svg";
 import darkModeIcon from "./assets/dark-icon.svg";
