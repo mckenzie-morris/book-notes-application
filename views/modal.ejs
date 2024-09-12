@@ -1,0 +1,49 @@
+<!-- modal toggle -->
+<input type="checkbox" id="modalToggle" class="peer hidden" />
+<!-- modal backdrop/wrapper -->
+<label
+  for="modalToggle"
+  class="fixed inset-0 hidden bg-black bg-opacity-50 peer-checked:block"
+></label>
+<!-- modal gradient background -->
+<div
+  id="modalBackground"
+  class="fixed inset-y-2/4 hidden w-fit self-center rounded-3xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 shadow-lg shadow-tertiaryTheme peer-checked:block"
+>
+  <!-- modal content -->
+  <div
+    id="modalBox"
+    class="flex flex-col rounded-2xl bg-secondaryTheme ~h-[20rem]/[35rem] ~w-[25rem]/[50rem]"
+  >
+    <h1
+      id="modalBrewerySelection"
+      class="josefin-sans-importFont self-center p-3 text-center font-extrabold text-tertiaryTheme ~text-xl/5xl"
+    ></h1>
+    <div>
+      <h2
+        class="josefin-sans-importFont p-3 font-extrabold text-quaternaryTheme ~text-xl/5xl"
+      >
+        Rating:
+      </h2>
+    </div>
+    <textarea
+      class="mx-2 my-auto min-h-[50%] bg-primaryTheme font-medium text-quaternaryTheme"
+    ></textarea>
+    <div
+      class="josefin-sans-importFont flex flex-grow items-center justify-evenly p-3 ~text-base/3xl"
+    >
+      <label
+        for="modalToggle"
+        id="closeModal"
+        class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme text-center font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:cursor-pointer hover:bg-gradient-to-br active:scale-95 active:shadow-inner"
+      >
+        Close
+      </label>
+      <button
+        class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:bg-gradient-to-r active:scale-95 active:shadow-inner"
+      >
+        Post Review!
+      </button>
+    </div>
+  </div>
+</div>

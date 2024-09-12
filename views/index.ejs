@@ -12,141 +12,18 @@
     <title>Mckenzie's Brewery Notes</title>
   </head>
   <body class="bg-primaryTheme">
-    <!-- Entire Screen Container -->
+    <!-- entire screen container -->
     <div class="relative flex h-dvh w-full flex-col items-center">
-      <!-- Hero & Theme Control Container -->
-      <div class="absolute top-0 w-full">
-        <div class="relative flex w-full justify-center self-start">
-          <div class="absolute end-0 m-3 flex" id="themeToggleContainer">
-            <label
-              for="themeToggle"
-              class="flex cursor-pointer select-none items-center"
-            >
-              <div class="relative">
-                <input type="checkbox" id="themeToggle" class="peer sr-only" />
-                <div
-                  class="box block h-9 w-16 rounded-full border-2 border-tertiaryTheme bg-secondaryTheme shadow-md shadow-tertiaryTheme/80"
-                ></div>
-                <div
-                  class="dot absolute left-1 top-1 flex h-7 w-7 justify-center rounded-full bg-quaternaryTheme transition peer-checked:translate-x-full"
-                >
-                  <img
-                    id="themeIcon"
-                    src="light-icon.svg"
-                    ;
-                    height="20px"
-                    width="20px"
-                  />
-                </div>
-              </div>
-            </label>
-          </div>
-          <h1
-            class="josefin-sans-importFont text-shadow mx-3 mb-10 mt-12 pt-10 text-center font-black text-secondaryTheme text-shadow-blur-xl text-shadow-x-3 text-shadow-tertiaryTheme ~/3xl:~text-5xl/8xl 2xl:text-nowrap 3xl:text-[7.5rem]"
-          >
-            🍻&nbsp;Mckenzie's Brewery Notes&nbsp;🍻
-          </h1>
-        </div>
-      </div>
+      <!-- hero & theme control container -->
+
+      <%- include('heroAndThemeControl.ejs') %>
 
       <!-- button container, button, and input -->
-      <div class="absolute top-[40%] ~text-lg/4xl">
-        <div
-          class="min-w-fit rounded-xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 shadow-xl shadow-tertiaryTheme/50 hover:bg-gradient-to-br active:scale-95 active:shadow-inner"
-        >
-          <button
-            type="button"
-            class="josefin-sans-importFont me-2 min-w-full rounded-lg bg-secondaryTheme px-5 py-2.5 text-center font-extrabold text-tertiaryTheme active:shadow-inner"
-          >
-            My Brewery Notes
-          </button>
-        </div>
 
-        <form id="search" action="/search" method="POST">
-          <input
-            type="hidden"
-            id="currentThemeSetting"
-            name="currentThemeSetting"
-            value=""
-          />
-          <div class="flex flex-col">
-            <label
-              for="user_input"
-              class="josefin-sans-importFont my-3 block text-nowrap pt-10 text-center font-extrabold text-tertiaryTheme"
-              >Search for a Brewery</label
-            >
-            <input
-              <% if (locals.lastQuery) { %>
-                data-last_query="<%=lastQuery%>"
-                data-query_results="<%=JSON.stringify(queryResults)%>"
-                data-last_theme="<%=lastTheme%>"
-              <% } %>
-              type="text"
-              id="user_input"
-              name="query"
-              placeholder="Type here!"
-              class="my-1 border border-secondaryTheme bg-primaryTheme p-2 text-center leading-none text-tertiaryTheme focus:bg-white focus:outline-none focus:ring-2 focus:ring-tertiaryTheme"
-            />
-            <div
-              class="grid grid-cols-1 divide-y divide-secondaryTheme text-center text-tertiaryTheme"
-            >
-            <% if (locals.queryResults) { let idx = 1 %>
-              <% queryResults.forEach( (elmt) => { %>
-                <label for="modalToggle" class="max-w-[450px] queryResultItem flex josefin-sans-importFont font-bold items-center justify-center min-h-full py-2 px-3 shadow-md shadow-tertiaryTheme hover:text-shadow text-shadow-blur-xl text-shadow-tertiaryTheme hover:cursor-pointer hover:bg-quaternaryTheme hover:text-primaryTheme hover:scale-110 active:scale-100"><%= idx %>.&nbsp;<%= elmt.name %></label> 
-              <%  idx++ }) %>
-            <% } %>
-            </div>
-          </div>
-        </form>
-      </div>
+      <%- include('buttonAndInput.ejs') %>
+
       <!-- modal -->
-      <input type="checkbox" id="modalToggle" class="peer hidden" />
-      <!-- modal backdrop/wrapper -->
-      <label
-        for="modalToggle"
-        class="fixed inset-0 hidden bg-black bg-opacity-50 peer-checked:block"
-      ></label>
-      <!-- modal content -->
-      <div
-        id="modalBackground"
-        class="fixed inset-y-2/4 hidden w-fit self-center rounded-3xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 shadow-lg shadow-tertiaryTheme peer-checked:block"
-      >
-        <div
-          id="modalBox"
-          class="flex flex-col rounded-2xl bg-secondaryTheme ~h-[20rem]/[35rem] ~w-[25rem]/[50rem]"
-        >
-          <h1
-            id="modalBrewerySelection"
-            class="josefin-sans-importFont self-center p-3 text-center font-extrabold text-tertiaryTheme ~text-xl/5xl"
-          ></h1>
-          <div>
-            <h2
-              class="josefin-sans-importFont p-3 font-extrabold text-quaternaryTheme ~text-xl/5xl"
-            >
-              Rating:
-            </h2>
-          </div>
-          <textarea
-            class="mx-2 my-auto min-h-[50%] bg-primaryTheme font-medium text-quaternaryTheme"
-          ></textarea>
-          <div
-            class="josefin-sans-importFont flex flex-grow items-center justify-evenly p-3 ~text-base/3xl"
-          >
-            <label
-              for="modalToggle"
-              id="closeModal"
-              class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme text-center font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:cursor-pointer hover:bg-gradient-to-br active:scale-95 active:shadow-inner"
-            >
-              Close
-            </label>
-            <button
-              class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:bg-gradient-to-r active:scale-95 active:shadow-inner"
-            >
-              Post Review!
-            </button>
-          </div>
-        </div>
-      </div>
+      <%- include('modal.ejs') %>
     </div>
 
     <script src="index-bundle.js"></script>

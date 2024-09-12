@@ -1,0 +1,37 @@
+<div class="absolute top-0 w-full">
+  <!-- hero and theme control -->
+  <div class="relative flex w-full justify-center self-start">
+    <div class="absolute end-0 m-3 flex" id="themeToggleContainer">
+      <label
+        for="themeToggle"
+        class="flex cursor-pointer select-none items-center"
+      >
+        <div class="relative">
+          <input type="checkbox" id="themeToggle" class="peer sr-only" />
+          <!-- pill-shaped gradient background (theme control switch) -->
+          <div
+            class="box block h-9 w-16 rounded-full border-2 border-tertiaryTheme bg-secondaryTheme shadow-md shadow-tertiaryTheme/80"
+          ></div>
+          <!-- disc-shaped dark/light icon container -->
+          <div
+            class="dot absolute left-1 top-1 flex h-7 w-7 justify-center rounded-full bg-quaternaryTheme transition peer-checked:translate-x-full"
+          >
+            <img
+              id="themeIcon"
+              src="light-icon.svg"
+              ;
+              height="20px"
+              width="20px"
+            />
+          </div>
+        </div>
+      </label>
+    </div>
+    <!-- hero -->
+    <h1
+      class="josefin-sans-importFont text-shadow mx-3 mb-10 mt-12 pt-10 text-center font-black text-secondaryTheme text-shadow-blur-xl text-shadow-x-3 text-shadow-tertiaryTheme ~/3xl:~text-5xl/8xl 2xl:text-nowrap 3xl:text-[7.5rem]"
+    >
+      🍻&nbsp;Mckenzie's Brewery Notes&nbsp;🍻
+    </h1>
+  </div>
+</div>
