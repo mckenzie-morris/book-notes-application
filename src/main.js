@@ -2,6 +2,7 @@ import 'animate.css';
 import "./styles.css";
 import lightModeIcon from "./assets/light-icon.svg";
 import darkModeIcon from "./assets/dark-icon.svg";
+import emptyMugs from "./assets/empty-space-mugs.svg"
 import $ from "jquery";
 
 // on document ready

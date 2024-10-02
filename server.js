@@ -26,6 +26,8 @@ app.get("/", (req, res) => {
   rootController(req, res);
 });
 
+// 🍻
+
 // render homepage + query results at '/search' endpoint
 app.post("/search", (req, res) => {
   searchController(req, res);
