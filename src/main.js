@@ -1,8 +1,10 @@
-import 'animate.css';
+import "animate.css";
 import "./styles.css";
 import lightModeIcon from "./assets/light-icon.svg";
 import darkModeIcon from "./assets/dark-icon.svg";
-import emptyMugs from "./assets/empty-space-mugs.svg"
+import emptyMugsDark from "./assets/empty-mugs-dark.svg";
+import emptyMugsLight from "./assets/empty-mugs-light.svg";
+import fullMugs from "./assets/full-mugs.svg";
 import $ from "jquery";
 
 // on document ready
@@ -47,10 +49,12 @@ $("#themeToggle").on("click", () => {
     $("html").toggleClass("light dark");
     $("#themeToggleContainer").toggleClass("light dark");
     $("#themeIcon").attr("src", "dark-icon.svg");
+    $(".emptyMugs").attr("src", "empty-mugs-dark.svg");
   } else if ($("html")[0].className === "dark") {
     $("html").toggleClass("dark light");
     $("#themeToggleContainer").toggleClass("dark light");
     $("#themeIcon").attr("src", "light-icon.svg");
+    $(".emptyMugs").attr("src", "empty-mugs-light.svg");
   }
 });
 
@@ -79,7 +83,63 @@ $("#user_input").on("input", () => {
 
 /////////////////////////////////////////////////////////////////////////
 
+// populate modal with name of query result
 $(".queryResultItem").on("click", function () {
   console.log($(this).text());
   $("#modalBrewerySelection").text($(this).text().slice(3));
 });
+
+// Mugs
+// $(".emptyMugs").on("mouseenter", function () {
+//   let previousSrc;
+//   if ($("html")[0].className === "light") {
+//     previousSrc = "empty-mugs-light.svg";
+//   } else {
+//     previousSrc = "empty-mugs-dark.svg";
+//   }
+
+//   const mugIdx = $(this).attr("id").slice(-1);
+//   console.log($(this).attr("id").slice(-1));
+
+//   for (let i = 0; i <= mugIdx; i += 1) {
+//     $(`#emptyMugs${i}`).attr("src", "full-mugs.svg");
+//   }
+
+//   $(".emptyMugs").on("mouseleave", function () {
+//     if ($("html")[0].className === "light") {
+//       previousSrc = "empty-mugs-light.svg";
+//     } else {
+//       previousSrc = "empty-mugs-dark.svg";
+//     }
+
+//     for (let i = 0; i <= mugIdx; i += 1) {
+//       $(`#emptyMugs${i}`).attr("src", previousSrc);
+//     }
+//   });
+// });
+
+//////////////////////////////////////////////////////////////////////
+
+function modalMugs() {
+  $(".emptyMugs")
+    .on("mouseenter", function () {
+      const mugIdx = $(this).attr("id").slice(-1);
+      for (let i = 0; i <= mugIdx; i += 1) {
+        $(`#emptyMugs${i}`).attr("src", "full-mugs.svg");
+      }
+    })
+    .on("mouseleave", function () {
+      const mugIdx = $(this).attr("id").slice(-1);
+      let previousSrc;
+      if ($("html")[0].className === "light") {
+        previousSrc = "empty-mugs-light.svg";
+      } else {
+        previousSrc = "empty-mugs-dark.svg";
+      }
+      for (let i = 0; i <= mugIdx; i += 1) {
+        $(`#emptyMugs${i}`).attr("src", previousSrc);
+      }
+    });
+}
+
+modalMugs();
