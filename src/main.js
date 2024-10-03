@@ -89,57 +89,76 @@ $(".queryResultItem").on("click", function () {
   $("#modalBrewerySelection").text($(this).text().slice(3));
 });
 
-// Mugs
-// $(".emptyMugs").on("mouseenter", function () {
-//   let previousSrc;
-//   if ($("html")[0].className === "light") {
-//     previousSrc = "empty-mugs-light.svg";
-//   } else {
-//     previousSrc = "empty-mugs-dark.svg";
-//   }
-
-//   const mugIdx = $(this).attr("id").slice(-1);
-//   console.log($(this).attr("id").slice(-1));
-
-//   for (let i = 0; i <= mugIdx; i += 1) {
-//     $(`#emptyMugs${i}`).attr("src", "full-mugs.svg");
-//   }
-
-//   $(".emptyMugs").on("mouseleave", function () {
-//     if ($("html")[0].className === "light") {
-//       previousSrc = "empty-mugs-light.svg";
-//     } else {
-//       previousSrc = "empty-mugs-dark.svg";
-//     }
-
-//     for (let i = 0; i <= mugIdx; i += 1) {
-//       $(`#emptyMugs${i}`).attr("src", previousSrc);
-//     }
-//   });
-// });
-
 //////////////////////////////////////////////////////////////////////
 
-function modalMugs() {
+function modalMugsControl() {
+  // initialize local variables
+  let mugsIdx;
+  let mugsIdxArr = [];
+  let previousSrc = "empty-mugs-light.svg";
+  // toggle empty mugs icons from 'light'/'dark' background
+  $("#themeToggle").on("change", () => {
+    if ($("html")[0].className === "dark") {
+      previousSrc = "empty-mugs-dark.svg";
+    } else {
+      previousSrc = "empty-mugs-light.svg";
+    }
+  });
+
+  // modularized for loop (loop thru mugs icons)
+  function mugsLoop(idx, srcString) {
+    for (let i = 0; i <= idx; i += 1) {
+      console.log('written!!!')
+      $(`#emptyMugs${i}`).attr("src", srcString);
+    }
+  }
+
+  //////////////////////////////////////////////////////////////////////
+
+  // select and set rating
+  $(".emptyMugs").on("click", function () {
+    mugsIdx = $(this).attr("id").slice(-1);
+    mugsIdxArr.push(mugsIdx);
+
+    mugsLoop(mugsIdx, "full-mugs.svg");
+    /* if rating is selected, and the same rating is clicked again, reset rating and enable 
+    visual representation of possible ratings */
+    if (mugsIdx === mugsIdxArr[mugsIdxArr.length - 2]) {
+      mugsLoop(mugsIdx, previousSrc);
+      mugsIdxArr.length = 0;
+    }
+    // reset any superfluous mugs to empty (if necessary)
+    else if (mugsIdx < mugsIdxArr[mugsIdxArr.length - 2]) {
+      for (let i = 9; i > mugsIdx; i -= 1) {
+        $(`#emptyMugs${i}`).attr("src", previousSrc);
+      }
+    }
+  });
+
+  //////////////////////////////////////////////////////////////////////
+
+  // change visual representation of possible ratings before selecting a rating
   $(".emptyMugs")
     .on("mouseenter", function () {
-      const mugIdx = $(this).attr("id").slice(-1);
-      for (let i = 0; i <= mugIdx; i += 1) {
-        $(`#emptyMugs${i}`).attr("src", "full-mugs.svg");
+      mugsIdx = $(this).attr("id").slice(-1);
+      if (!mugsIdxArr.length) {
+        mugsLoop(mugsIdx, "full-mugs.svg");
       }
     })
     .on("mouseleave", function () {
-      const mugIdx = $(this).attr("id").slice(-1);
-      let previousSrc;
-      if ($("html")[0].className === "light") {
-        previousSrc = "empty-mugs-light.svg";
-      } else {
-        previousSrc = "empty-mugs-dark.svg";
-      }
-      for (let i = 0; i <= mugIdx; i += 1) {
-        $(`#emptyMugs${i}`).attr("src", previousSrc);
+      mugsIdx = $(this).attr("id").slice(-1);
+      if (!mugsIdxArr.length) {
+        mugsLoop(mugsIdx, previousSrc);
       }
     });
+
+  // if the modal is closed, reset rating to blank
+  $("#modalToggle").on("change", () => {
+    if ($("#modalToggle").prop("checked") === false) {
+      mugsLoop(mugsIdx, previousSrc);
+    }
+    mugsIdxArr.length = 0;
+  });
 }
 
-modalMugs();
+modalMugsControl();
