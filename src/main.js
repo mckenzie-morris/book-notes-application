@@ -42,6 +42,9 @@ theme to the setting prior to the API call and page render */
   }
 });
 
+// function that controls beer mug icons
+modalMugsControl();
+
 /* if the '#themeToggle' button is clicked, swap theme 
 from 'light' to 'dark', or 'dark' to 'light' */
 $("#themeToggle").on("click", () => {
@@ -81,15 +84,11 @@ $("#user_input").on("input", () => {
   }
 });
 
-/////////////////////////////////////////////////////////////////////////
-
 // populate modal with name of query result
 $(".queryResultItem").on("click", function () {
   console.log($(this).text());
   $("#modalBrewerySelection").text($(this).text().slice(3));
 });
-
-//////////////////////////////////////////////////////////////////////
 
 function modalMugsControl() {
   // initialize local variables
@@ -106,58 +105,61 @@ function modalMugsControl() {
   });
 
   // modularized for loop (loop thru mugs icons)
-  function mugsLoop(idx, srcString) {
-    for (let i = 0; i <= idx; i += 1) {
+  // if first argument is undefined, 'start' defaults to 0
+  function mugsLoop(start = 0, end, srcString) {
+    for (let i = Number(start); i <= Number(end); i += 1) {
       $(`#emptyMugs${i}`).attr("src", srcString);
     }
   }
-
-  //////////////////////////////////////////////////////////////////////
 
   // select and set rating
   $(".emptyMugs").on("click", function () {
     mugsIdx = $(this).attr("id").slice(-1);
     mugsIdxArr.push(mugsIdx);
 
-    mugsLoop(mugsIdx, "full-mugs.svg");
+    // flip empty mugs to full mugs
+    if (mugsIdx > mugsIdxArr[mugsIdxArr.length - 2]) {
+      mugsLoop(mugsIdxArr[mugsIdxArr.length - 2], mugsIdx, "full-mugs.svg");
+      // remove unnecessary data
+      mugsIdxArr.shift();
+    }
+
     /* if rating is selected, and the same rating is clicked again, reset rating and enable 
-    visual representation of possible ratings */
+  visual representation of possible ratings */
     if (mugsIdx === mugsIdxArr[mugsIdxArr.length - 2]) {
-      mugsLoop(mugsIdx, previousSrc);
+      mugsLoop(0, mugsIdx, previousSrc);
       mugsIdxArr.length = 0;
     }
-    // reset any superfluous mugs to empty (if necessary)
+    // reset any superfluous full mugs to empty (if necessary)
     else if (mugsIdx < mugsIdxArr[mugsIdxArr.length - 2]) {
-      for (let i = 9; i > mugsIdx; i -= 1) {
+      for (let i = mugsIdxArr[mugsIdxArr.length - 2]; i > mugsIdx; i -= 1) {
         $(`#emptyMugs${i}`).attr("src", previousSrc);
       }
+      // remove unnecessary data
+      mugsIdxArr.shift();
     }
   });
-
-  //////////////////////////////////////////////////////////////////////
 
   // change visual representation of possible ratings before selecting a rating
   $(".emptyMugs")
     .on("mouseenter", function () {
       mugsIdx = $(this).attr("id").slice(-1);
       if (!mugsIdxArr.length) {
-        mugsLoop(mugsIdx, "full-mugs.svg");
+        mugsLoop(0, mugsIdx, "full-mugs.svg");
       }
     })
     .on("mouseleave", function () {
       mugsIdx = $(this).attr("id").slice(-1);
       if (!mugsIdxArr.length) {
-        mugsLoop(mugsIdx, previousSrc);
+        mugsLoop(0, mugsIdx, previousSrc);
       }
     });
 
   // if the modal is closed, reset rating to blank
   $("#modalToggle").on("change", () => {
     if ($("#modalToggle").prop("checked") === false) {
-      mugsLoop(mugsIdx, previousSrc);
+      mugsLoop(0, mugsIdx, previousSrc);
     }
     mugsIdxArr.length = 0;
   });
 }
-
-modalMugsControl();
