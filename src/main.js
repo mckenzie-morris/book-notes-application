@@ -108,7 +108,6 @@ function modalMugsControl() {
   // modularized for loop (loop thru mugs icons)
   function mugsLoop(idx, srcString) {
     for (let i = 0; i <= idx; i += 1) {
-      console.log('written!!!')
       $(`#emptyMugs${i}`).attr("src", srcString);
     }
   }
