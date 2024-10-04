@@ -1,16 +1,19 @@
 <!-- button, search field, and query results column -->
 <div class="absolute top-[40%] ~text-lg/4xl">
     <!-- button gradient background -->
-    <div
-      class="min-w-fit rounded-xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 shadow-xl shadow-tertiaryTheme/50 hover:bg-gradient-to-br active:scale-95 active:shadow-inner"
-    >
-      <button
-        type="button"
-        class="josefin-sans-importFont me-2 min-w-full rounded-lg bg-secondaryTheme px-5 py-2.5 text-center font-extrabold text-tertiaryTheme active:shadow-inner"
+      <div
+        class="min-w-fit rounded-xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 shadow-xl shadow-tertiaryTheme/50 hover:bg-gradient-to-br active:scale-95 active:shadow-inner"
       >
-        My Brewery Notes
-      </button>
-    </div>
+
+        <button
+          id="notesButton"
+          type="button"
+          class="josefin-sans-importFont me-2 min-w-full rounded-lg bg-secondaryTheme px-5 py-2.5 text-center font-extrabold text-tertiaryTheme active:shadow-inner"
+        >
+          My Brewery Notes
+        </button>
+        
+      </div>
     <!-- search form (input field) -->
     <form id="search" action="/search" method="POST">
       <input

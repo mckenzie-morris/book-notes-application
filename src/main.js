@@ -40,10 +40,14 @@ theme to the setting prior to the API call and page render */
     // populate the input with the query sent on the API call
     $("#user_input").val(lastQuery);
   }
-});
+  // function that controls beer mug icons
+  modalMugsControl();
 
-// function that controls beer mug icons
-modalMugsControl();
+  // render 'notes' page at '/notes' endpoint when 'notesButton' is clicked
+  $("#notesButton").on("click", () => {
+    window.location.href = "/notes";
+  });
+});
 
 /* if the '#themeToggle' button is clicked, swap theme 
 from 'light' to 'dark', or 'dark' to 'light' */
