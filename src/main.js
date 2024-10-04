@@ -6,6 +6,7 @@ import emptyMugsDark from "./assets/empty-mugs-dark.svg";
 import emptyMugsLight from "./assets/empty-mugs-light.svg";
 import fullMugs from "./assets/full-mugs.svg";
 import $ from "jquery";
+import axios from "axios";
 
 // on document ready
 $(() => {
@@ -40,8 +41,6 @@ theme to the setting prior to the API call and page render */
     // populate the input with the query sent on the API call
     $("#user_input").val(lastQuery);
   }
-  // function that controls beer mug icons
-  modalMugsControl();
 
   // render 'notes' page at '/notes' endpoint when 'notesButton' is clicked
   $("#notesButton").on("click", () => {
@@ -88,13 +87,34 @@ $("#user_input").on("input", () => {
   }
 });
 
-// populate modal with name of query result
-$(".queryResultItem").on("click", function () {
-  console.log($(this).text());
+// populate modal with name of query result on click
+$(".queryResultItem").on("click", async function () {
+  // text is pulled from the query result and added to modal title h1 element
   $("#modalBrewerySelection").text($(this).text().slice(3));
+  // make axios GET request to obtain location data
+  try {
+    const response = await axios(
+      // request config object
+      {
+        method: "GET",
+        url: `https://api.openbrewerydb.org/v1/breweries/{${$(this).data().brewery_id}}`,
+      },
+    );
+    // return response;
+    console.log(response.data);
+    $("#modalBrewerySelectionAddress").text(
+      `${response.data.address_1}, ${response.data.city}, ${response.data.state} ${response.data.postal_code}`,
+    );
+    $("#modalBrewerySelectionCountry").text(`${response.data.country}`);
+    return;
+  } catch (error) {
+    // if error encountered during API call, log it to the console
+    console.log(error);
+  }
 });
 
-function modalMugsControl() {
+//  Immediately Invoked Function Expression (IIFE). controls mug icons in modal
+(function modalMugsControl() {
   // initialize local variables
   let mugsIdx;
   let mugsIdxArr = [];
@@ -166,4 +186,4 @@ function modalMugsControl() {
     }
     mugsIdxArr.length = 0;
   });
-}
+})();

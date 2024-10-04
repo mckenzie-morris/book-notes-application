@@ -47,8 +47,8 @@
         >
             <% if (locals.queryResults) { let idx = 1 %>
             <% queryResults.forEach( (elmt) => { %>
-                <label for="modalToggle" class="max-w-[450px] queryResultItem flex josefin-sans-importFont font-bold items-center justify-center min-h-full py-2 px-3 shadow-md shadow-tertiaryTheme hover:text-shadow text-shadow-blur-xl text-shadow-tertiaryTheme hover:cursor-pointer hover:bg-quaternaryTheme hover:text-primaryTheme hover:scale-110 active:scale-100"><%= idx %>.&nbsp;<%= elmt.name %></label> 
-            <%  idx++ }) %>
+                <label data-brewery_id="<%=elmt.id%>" for="modalToggle" class="max-w-[450px] queryResultItem flex josefin-sans-importFont font-bold items-center justify-center min-h-full py-2 px-3 shadow-md shadow-tertiaryTheme hover:text-shadow text-shadow-blur-xl text-shadow-tertiaryTheme hover:cursor-pointer hover:bg-quaternaryTheme hover:text-primaryTheme hover:scale-110 active:scale-100"><%= idx %>.&nbsp;<%= elmt.name %></label> 
+              <%  idx++ }) %>
             <% } %>
         </div>
       </div>
