@@ -1,6 +1,7 @@
 import "./styles.css";
 import lightModeIcon from "./assets/light-icon.svg";
 import darkModeIcon from "./assets/dark-icon.svg";
+import chevron from "./assets/chevron.svg"
 import $ from "jquery";
 
 // on document ready
