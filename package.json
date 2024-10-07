@@ -7,7 +7,8 @@
   "scripts": {
     "build": "webpack",
     "start": "nodemon server.js",
-    "dev": "concurrently \"npm run build\" \"npm run start\""
+    "dev": "concurrently \"npm run build\" \"npm run start\"",
+    "serve": "webpack server"
   },
   "keywords": [],
   "author": "",
