@@ -76,7 +76,7 @@ export default {
     // which port to serve from
     port: 8080,
     // open a new tab automatically
-    open: true,
+    open: ['/notes'],
     // use hot module reloading
     hot: true,
     /* enable gzip compression- compression algo that compresses 
