@@ -14,6 +14,13 @@ $(() => {
   // initialize the html to dark theme
   $("html").addClass("light");
   $("#themeToggleContainer").addClass("light");
+
+
+    // render 'index' page at root endpoint when 'returnHomeButton' is clicked
+    $("#returnHomeButton").on("click", () => {
+      window.location.href = "/";
+    });
+
 });
 
 $("#themeToggle").on("click", () => {
