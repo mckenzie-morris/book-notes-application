@@ -24,6 +24,7 @@ $("#themeToggle").on("click", () => {
     $('.accordionChevron').attr("src", "/chevron-dark.svg")
     $('.editButtons').attr("src", "/edit-dark.svg")
     $('.deleteButtons').attr("src", "/delete-dark.svg")
+    $(".emptyMugs").attr("src", "empty-mugs-dark.svg");
   } else if ($("html")[0].className === "dark") {
     $("html").toggleClass("dark light");
     $("#themeToggleContainer").toggleClass("dark light");
@@ -31,5 +32,6 @@ $("#themeToggle").on("click", () => {
     $('.accordionChevron').attr("src", "/chevron-light.svg")
     $('.editButtons').attr("src", "/edit-light.svg")
     $('.deleteButtons').attr("src", "/delete-light.svg")
+    $(".emptyMugs").attr("src", "empty-mugs-light.svg");
   }
 });

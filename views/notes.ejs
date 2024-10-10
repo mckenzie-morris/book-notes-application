@@ -60,7 +60,10 @@
         <div
           class="relative my-2 rounded-md bg-secondaryTheme py-2 pe-10 ps-3 font-bold text-quaternaryTheme ~text-lg/4xl"
         >
-          <h1 class="ps-3">Crux Brewery | 12345 main st. Oregon City, OR 97045 | April&nbsp;9th,&nbsp;2024 </h1> 
+          <h1 class="ps-3">
+            Crux Brewery | 12345 main st. Oregon City, OR 97045 |
+            April&nbsp;9th,&nbsp;2024
+          </h1>
           <input id="header1Input" type="checkbox" class="peer hidden" />
           <label
             for="header1Input"
@@ -147,16 +150,58 @@
                 src="edit-light.svg"
                 class="editButtons z-20 mx-2 rounded-xl border-4 border-quaternaryTheme p-1 shadow-md shadow-tertiaryTheme ~h-[2.5rem]/[4rem] ~w-[2.5rem]/[4rem] hover:cursor-pointer active:scale-95 active:shadow-inner"
               />
-              <img
-                id="deleteButton1"
-                src="delete-light.svg"
-                class="deleteButtons z-20 mx-2 rounded-xl border-4 border-quaternaryTheme p-2 shadow-md shadow-tertiaryTheme ~h-[2.5rem]/[4rem] ~w-[2.5rem]/[4rem] hover:cursor-pointer active:scale-95 active:shadow-inner"
-              />
+              <label class="z-20 rounded-xl" for="confirmationModalToggle">
+                <img
+                  id="deleteButton1"
+                  src="delete-light.svg"
+                  class="deleteButtons z-20  rounded-xl border-4 border-quaternaryTheme p-2 shadow-md shadow-tertiaryTheme ~h-[2.5rem]/[4rem] ~w-[2.5rem]/[4rem] hover:cursor-pointer active:scale-95 active:shadow-inner"
+                />
+              </label>
             </div>
           </div>
         </div>
         <!-- / accordion heading 1 -->
       </div>
+      <!-- confirmation modal toggle -->
+      <input type="checkbox" id="confirmationModalToggle" class="peer hidden" />
+      <!-- modal backdrop/wrapper -->
+      <label
+        for="confirmationModalToggle"
+        class="fixed inset-0 z-30 hidden bg-black bg-opacity-50 peer-checked:block"
+      ></label>
+      <!-- modal gradient background -->
+      <div
+        id="confirmationModalBackground"
+        class="animate__animated animate__zoomIn fixed inset-y-2/4 z-30 hidden w-fit self-center rounded-3xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 shadow-lg shadow-tertiaryTheme peer-checked:block"
+      >
+        <div
+          id="confirmationModalBox"
+          class="z-30 flex h-fit flex-col rounded-2xl bg-secondaryTheme ~w-[25rem]/[50rem]"
+        >
+          <h1
+            class="josefin-sans-importFont self-center p-3 text-center font-extrabold text-tertiaryTheme ~text-xl/5xl"
+          >
+            Are you sure you want to delete this review?
+          </h1>
+          <div
+            class="josefin-sans-importFont flex flex-grow items-center justify-evenly p-3 ~text-base/3xl"
+          >
+            <label
+              for="confirmationModalToggle"
+              id="closeConfirmationModal"
+              class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme text-center font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:cursor-pointer hover:bg-gradient-to-br active:scale-95 active:shadow-inner"
+            >
+              Close
+            </label>
+            <button
+              class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:bg-gradient-to-r active:scale-95 active:shadow-inner"
+            >
+              Delete!
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- / confirmation modal -->
     </div>
 
     <!-- <script src="/notes-bundle.js"></script> -->
