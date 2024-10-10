@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 });
 
 app.get('/notes', (req, res) => {
-  return res.render("notes.ejs");
+  return res.render("./notes-page/index.ejs");
 })
 
 // render homepage + query results at '/search' endpoint

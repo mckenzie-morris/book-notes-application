@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Mckenzie's Brewery Notes</title>
+  </head>
+  <body class="bg-primaryTheme">
+    <!-- entire screen container -->
+    <div class="relative flex h-dvh w-full flex-col items-center">
+      <!-- hero & theme control container -->
+      <%- include('../heroAndThemeControl.ejs') %>
+      <!-- button container, button, and input -->
+      <%- include('buttonAndInput.ejs') %>
+      <!-- modal -->
+      <%- include('modal.ejs') %>
+    </div>
+
+    <script src="index-bundle.js"></script>
+  </body>
+</html>

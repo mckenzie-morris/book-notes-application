@@ -15,17 +15,13 @@
     <!-- entire screen container -->
     <div class="relative flex h-dvh w-full flex-col items-center">
       <!-- hero & theme control container -->
-
-      <%- include('heroAndThemeControl.ejs') %>
-
-      <!-- button container, button, and input -->
-
-      <%- include('buttonAndInput.ejs') %>
-
-      <!-- modal -->
-      <%- include('modal.ejs') %>
+      <%- include('../heroAndThemeControl.ejs') %>
+      <!-- return home button and accordion -->
+      <%- include('buttonAndAccordion.ejs') %>
+      <!-- delete confirmation modal -->
+      <%- include('confirmationModal.ejs') %>
     </div>
 
-    <script src="index-bundle.js"></script>
+    <script src="/notes-bundle.js"></script>
   </body>
 </html>

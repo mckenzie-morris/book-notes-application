@@ -4,7 +4,7 @@ let queryResults = undefined;
 const queryCache = {};
 
 const rootController = (req, res) => {
-  return res.render("index.ejs", { queryResults: queryResults });
+  return res.render("./home-page/index.ejs", { queryResults: queryResults });
 };
 
 const searchController = async (req, res) => {
@@ -20,7 +20,7 @@ const searchController = async (req, res) => {
     // pull the results of the previously made query from the cache
     queryResults = queryCache[queryParams];
     // render the homepage with the cached query key-value pair
-    return res.render("index.ejs", {
+    return res.render("./home-page/index.ejs", {
       queryResults: queryResults,
       lastQuery: queryParams,
       lastTheme: lastTheme,
@@ -43,7 +43,7 @@ const searchController = async (req, res) => {
       // add the most recent query and its response data to the cache
       queryCache[queryParams] = response.data;
       // render the homepage with the (now) cached query key-value pair
-      return res.render("index.ejs", {
+      return res.render("./home-page/index.ejs", {
         queryResults: response.data,
         lastQuery: queryParams,
         lastTheme: lastTheme,
