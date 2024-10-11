@@ -93,28 +93,44 @@ $("#user_input").on("input", () => {
 });
 
 //////////////////////////////////// Modal Control ////////////////////////////////////
+const modalCache = {};
 // populate modal with name of query result on click
 $(".queryResultItem").on("click", async function () {
   // text is pulled from the query result and added to modal title h1 element
   $("#modalBrewerySelection").text($(this).text().slice(3));
-  // make axios GET request to obtain location data
-  try {
-    const response = await axios(
-      // request config object
-      {
-        method: "GET",
-        url: `https://api.openbrewerydb.org/v1/breweries/{${$(this).data().brewery_id}}`,
-      },
-    );
-    console.log(response.data);
+
+  const breweryId = $(this).data().brewery_id;
+
+  if (breweryId in modalCache) {
+    console.log(modalCache[breweryId], "FOUND in cache!");
+
     $("#modalBrewerySelectionAddress").text(
-      `${response.data.address_1}, ${response.data.city}, ${response.data.state} ${response.data.postal_code}`,
+      `${modalCache[breweryId].address_1}, ${modalCache[breweryId].city}, ${modalCache[breweryId].state} ${modalCache[breweryId].postal_code}`,
     );
-    $("#modalBrewerySelectionCountry").text(`${response.data.country}`);
-    return;
-  } catch (error) {
-    // if error encountered during API call, log it to the console
-    console.log(error);
+    $("#modalBrewerySelectionCountry").text(`${modalCache[breweryId].country}`);
+  } 
+  else {
+    // make axios GET request to obtain location data
+    try {
+      console.log("NOT found in cache!");
+      const response = await axios(
+        // request config object
+        {
+          method: "GET",
+          url: `https://api.openbrewerydb.org/v1/breweries/{${breweryId}}`,
+        },
+      );
+      console.log(response.data);
+      $("#modalBrewerySelectionAddress").text(
+        `${response.data.address_1}, ${response.data.city}, ${response.data.state} ${response.data.postal_code}`,
+      );
+      $("#modalBrewerySelectionCountry").text(`${response.data.country}`);
+      modalCache[breweryId] = response.data;
+      return;
+    } catch (error) {
+      // if error encountered during API call, log it to the console
+      console.log(error);
+    }
   }
 });
 
