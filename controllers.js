@@ -16,12 +16,13 @@ const searchController = async (req, res) => {
     corresponding results */
   if (queryParams in queryCache) {
     console.log(queryCache, "\nFOUND in cache!");
+
     // pull the results of the previously made query from the cache
     queryResults = queryCache[queryParams];
+
     // render the homepage with the cached query key-value pair
     return res.render("./home-page/index.ejs", {
       queryResults: queryResults,
-      lastQuery: queryParams,
     });
   } else {
     /* if the most recent query has NOT been cached, make API call with the
@@ -43,7 +44,6 @@ const searchController = async (req, res) => {
       // render the homepage with the (now) cached query key-value pair
       return res.render("./home-page/index.ejs", {
         queryResults: response.data,
-        lastQuery: queryParams,
       });
     } catch (error) {
       // if error encountered during API call, log it to the console

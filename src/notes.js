@@ -9,7 +9,7 @@ import lightDelete from "./assets/delete-light.svg";
 import darkDelete from "./assets/delete-dark.svg";
 import $ from "jquery";
 
-// on document ready
+//////////////////////////////////// On Document Ready ////////////////////////////////////
 $(() => {
   // render 'index' page at root endpoint when 'returnHomeButton' is clicked
   $("#returnHomeButton").on("click", () => {
@@ -26,6 +26,7 @@ $(() => {
   }
 });
 
+//////////////////////////////////// Theme Control ////////////////////////////////////
 const lightTheme = () => {
   $("#themeIcon").attr("src", "/light-icon.svg");
   $(".accordionChevron").attr("src", "/chevron-light.svg");

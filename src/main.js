@@ -8,10 +8,17 @@ import fullMugs from "./assets/full-mugs.svg";
 import $ from "jquery";
 import axios from "axios";
 
-// on document ready
+//////////////////////////////////// On Document Ready ////////////////////////////////////
 $(() => {
-  const theme = localStorage.getItem("theme");
+  // render 'notes' page at '/notes' endpoint when 'notesButton' is clicked
+  $("#notesButton").on("click", () => {
+    $("#resultsList").empty();
+    window.location.href = "/notes";
+    sessionStorage.removeItem("submittedQuery");
+  });
 
+  const theme = localStorage.getItem("theme");
+  // toggle theme to 'dark' upon document ready (default is 'light')
   if (theme && theme === "dark") {
     $("#themeToggle").prop("checked", true);
     $("html").toggleClass("light dark");
@@ -19,36 +26,21 @@ $(() => {
     darkTheme();
   }
 
-  /////////////////////////////////////////////////////////////////////////////////////////
-
-  // dynamically-generated data sent from server to data-* attributes on '#user_input'
-  // will be an empty object literal before first query is made
-  const serverData = $("#user_input").data();
-  console.log(serverData);
-
-  /* if a query has been made, and the server's API call has successfuly returned data
-and rendered the homepage, display the data, focus the input field, and set the
-theme to the setting prior to the API call and page render */
-  if (Object.keys(serverData).length) {
-    // list of returned breweries from the API call
-    const queryResults = $("#user_input").data().query_results;
-    // the query that was sent on the API call
-    const lastQuery = $("#user_input").data().last_query;
+  const lastQuery = sessionStorage.getItem("submittedQuery");
+  if (lastQuery) {
+    // dynamically-generated data sent from server to data-* attributes on '#user_input'
+    const serverData = $("#user_input").data();
+    console.log(serverData.query_results);
 
     // focus the input field
     $("#user_input").trigger("focus");
     // populate the input with the query sent on the API call
-    $("#user_input").val(lastQuery);
+
+    $("#user_input").val(sessionStorage.getItem("submittedQuery"));
   }
-
-  /////////////////////////////////////////////////////////////////////////////////////////
-
-  // render 'notes' page at '/notes' endpoint when 'notesButton' is clicked
-  $("#notesButton").on("click", () => {
-    window.location.href = "/notes";
-  });
 });
 
+//////////////////////////////////// Theme Control ////////////////////////////////////
 const lightTheme = () => {
   $("#themeIcon").attr("src", "/light-icon.svg");
   $(".accordionChevron").attr("src", "/chevron-light.svg");
@@ -81,12 +73,14 @@ $("#themeToggle").on("click", () => {
   }
 });
 
+//////////////////////////////////// Input Field Control ////////////////////////////////////
 // triggerd each time input field changes
 $("#user_input").on("input", () => {
   // only trigger debounce function if input value is non-zero
   if ($("#user_input").val().length) {
     const debouncer = setTimeout(() => {
-      // console.log('Timeout reached, input submitted: ', $("#user_input").val())
+      // store the query in the current session
+      sessionStorage.setItem("submittedQuery", $("#user_input").val());
       $("#search").trigger("submit");
     }, 1000);
     /* if user begins typing before necessary time has elapsed, reset timer and 
@@ -98,6 +92,7 @@ $("#user_input").on("input", () => {
   }
 });
 
+//////////////////////////////////// Modal Control ////////////////////////////////////
 // populate modal with name of query result on click
 $(".queryResultItem").on("click", async function () {
   // text is pulled from the query result and added to modal title h1 element
@@ -122,6 +117,8 @@ $(".queryResultItem").on("click", async function () {
     console.log(error);
   }
 });
+
+//////////////////////////////////// Modal Beer Mugs Icons ////////////////////////////////////
 
 //  Immediately Invoked Function Expression (IIFE). controls mug icons in modal
 (function modalMugsControl() {

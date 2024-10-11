@@ -1,49 +1,47 @@
 <!-- button, search field, and query results column -->
 <div class="absolute top-[40%] ~text-lg/4xl">
-    <!-- button gradient background -->
-      <div
-        class="min-w-fit rounded-xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 shadow-xl shadow-tertiaryTheme/50 hover:bg-gradient-to-br active:scale-95 active:shadow-inner"
+  <!-- button gradient background -->
+  <div
+    class="min-w-fit rounded-xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 shadow-xl shadow-tertiaryTheme/50 hover:bg-gradient-to-br active:scale-95 active:shadow-inner"
+  >
+    <button
+      id="notesButton"
+      type="button"
+      class="josefin-sans-importFont me-2 min-w-full rounded-lg bg-secondaryTheme px-5 py-2.5 text-center font-extrabold text-tertiaryTheme active:shadow-inner"
+    >
+      My Brewery Notes
+    </button>
+  </div>
+  <!-- search form (input field) -->
+  <form id="search" action="/search" method="POST">
+    <div class="flex flex-col">
+      <label
+        for="user_input"
+        class="josefin-sans-importFont my-3 block text-nowrap pt-10 text-center font-extrabold text-tertiaryTheme"
+        >Search for a Brewery</label
       >
-
-        <button
-          id="notesButton"
-          type="button"
-          class="josefin-sans-importFont me-2 min-w-full rounded-lg bg-secondaryTheme px-5 py-2.5 text-center font-extrabold text-tertiaryTheme active:shadow-inner"
-        >
-          My Brewery Notes
-        </button>
-        
+      <!-- locals.queryResults data passed from server after '/search' endpoint (form submission) -->
+      <input
+        <% if (locals.queryResults) { %>
+          data-query_results="<%=JSON.stringify(queryResults)%>"
+        <% } %>
+        type="text"
+        id="user_input"
+        name="query"
+        placeholder="Type here!"
+        class="my-1 border border-secondaryTheme bg-primaryTheme p-2 text-center leading-none text-tertiaryTheme focus:bg-white focus:outline-none focus:ring-2 focus:ring-tertiaryTheme"
+      />
+      <!-- query results from server -->
+      <div
+        id="resultsList"
+        class="grid grid-cols-1 divide-y divide-secondaryTheme text-center text-tertiaryTheme"
+      >
+        <% if (locals.queryResults) { let idx = 1 %>
+          <% queryResults.forEach( (elmt) => { %>
+            <label data-brewery_id="<%=elmt.id%>" for="modalToggle" class="max-w-[450px] queryResultItem flex josefin-sans-importFont font-bold items-center justify-center min-h-full py-2 px-3 shadow-md shadow-tertiaryTheme hover:text-shadow text-shadow-blur-xl text-shadow-tertiaryTheme hover:cursor-pointer hover:bg-quaternaryTheme hover:text-primaryTheme hover:scale-110 active:scale-100"><%= idx %>.&nbsp;<%= elmt.name %></label> 
+          <%  idx++ }) %>
+        <% } %>
       </div>
-    <!-- search form (input field) -->
-    <form id="search" action="/search" method="POST">
-      <div class="flex flex-col">
-        <label
-          for="user_input"
-          class="josefin-sans-importFont my-3 block text-nowrap pt-10 text-center font-extrabold text-tertiaryTheme"
-          >Search for a Brewery</label
-        >
-        <!-- locals.lastQuery data passed from server after '/search' endpoint (form submission) -->
-        <input
-          <% if (locals.lastQuery) { %>
-            data-last_query="<%=lastQuery%>"
-            data-query_results="<%=JSON.stringify(queryResults)%>"
-          <% } %>
-          type="text"
-          id="user_input"
-          name="query"
-          placeholder="Type here!"
-          class="my-1 border border-secondaryTheme bg-primaryTheme p-2 text-center leading-none text-tertiaryTheme focus:bg-white focus:outline-none focus:ring-2 focus:ring-tertiaryTheme"
-        />
-        <!-- query results from server -->
-        <div
-          class="grid grid-cols-1 divide-y divide-secondaryTheme text-center text-tertiaryTheme"
-        >
-            <% if (locals.queryResults) { let idx = 1 %>
-            <% queryResults.forEach( (elmt) => { %>
-                <label data-brewery_id="<%=elmt.id%>" for="modalToggle" class="max-w-[450px] queryResultItem flex josefin-sans-importFont font-bold items-center justify-center min-h-full py-2 px-3 shadow-md shadow-tertiaryTheme hover:text-shadow text-shadow-blur-xl text-shadow-tertiaryTheme hover:cursor-pointer hover:bg-quaternaryTheme hover:text-primaryTheme hover:scale-110 active:scale-100"><%= idx %>.&nbsp;<%= elmt.name %></label> 
-              <%  idx++ }) %>
-            <% } %>
-        </div>
-      </div>
-    </form>
+    </div>
+  </form>
 </div>
