@@ -16,12 +16,6 @@
       </div>
     <!-- search form (input field) -->
     <form id="search" action="/search" method="POST">
-      <input
-        type="hidden"
-        id="currentThemeSetting"
-        name="currentThemeSetting"
-        value=""
-      />
       <div class="flex flex-col">
         <label
           for="user_input"
@@ -33,7 +27,6 @@
           <% if (locals.lastQuery) { %>
             data-last_query="<%=lastQuery%>"
             data-query_results="<%=JSON.stringify(queryResults)%>"
-            data-last_theme="<%=lastTheme%>"
           <% } %>
           type="text"
           id="user_input"

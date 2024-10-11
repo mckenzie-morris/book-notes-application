@@ -19,12 +19,12 @@ $(() => {
     darkTheme();
   }
 
+  /////////////////////////////////////////////////////////////////////////////////////////
+
   // dynamically-generated data sent from server to data-* attributes on '#user_input'
   // will be an empty object literal before first query is made
   const serverData = $("#user_input").data();
   console.log(serverData);
-  // current theme ('light' or 'dark')
-  const currentTheme = $("html")[0].className;
 
   /* if a query has been made, and the server's API call has successfuly returned data
 and rendered the homepage, display the data, focus the input field, and set the
@@ -34,18 +34,14 @@ theme to the setting prior to the API call and page render */
     const queryResults = $("#user_input").data().query_results;
     // the query that was sent on the API call
     const lastQuery = $("#user_input").data().last_query;
-    // the theme setting prior to the API call
-    const lastTheme = $("#user_input").data().last_theme;
-    /* if the current theme does not match the theme setting prior to the API call, 
-  switch the theme */
-    if (currentTheme !== lastTheme) {
-      $("#themeToggle").trigger("click");
-    }
+
     // focus the input field
     $("#user_input").trigger("focus");
     // populate the input with the query sent on the API call
     $("#user_input").val(lastQuery);
   }
+
+  /////////////////////////////////////////////////////////////////////////////////////////
 
   // render 'notes' page at '/notes' endpoint when 'notesButton' is clicked
   $("#notesButton").on("click", () => {
@@ -85,12 +81,6 @@ $("#themeToggle").on("click", () => {
   }
 });
 
-/* on query submission, attach the current theme setting ('light' or 'dark') to
-the input field with attribute 'type=hidden' */
-$("#search").on("submit", () => {
-  $("#currentThemeSetting").val($("html")[0].className);
-});
-
 // triggerd each time input field changes
 $("#user_input").on("input", () => {
   // only trigger debounce function if input value is non-zero
@@ -121,7 +111,6 @@ $(".queryResultItem").on("click", async function () {
         url: `https://api.openbrewerydb.org/v1/breweries/{${$(this).data().brewery_id}}`,
       },
     );
-    // return response;
     console.log(response.data);
     $("#modalBrewerySelectionAddress").text(
       `${response.data.address_1}, ${response.data.city}, ${response.data.state} ${response.data.postal_code}`,

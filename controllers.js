@@ -9,8 +9,7 @@ const rootController = (req, res) => {
 
 const searchController = async (req, res) => {
   console.log(req.body);
-  // pull the current theme from input with 'type='hidden'
-  const lastTheme = req.body.currentThemeSetting;
+
   // pull query from input, and format the data (lowercase and no white space)
   const queryParams = req.body.query.toLowerCase().trim();
   /* if the most recent query has been cached, render the homepage with the 
@@ -23,7 +22,6 @@ const searchController = async (req, res) => {
     return res.render("./home-page/index.ejs", {
       queryResults: queryResults,
       lastQuery: queryParams,
-      lastTheme: lastTheme,
     });
   } else {
     /* if the most recent query has NOT been cached, make API call with the
@@ -46,7 +44,6 @@ const searchController = async (req, res) => {
       return res.render("./home-page/index.ejs", {
         queryResults: response.data,
         lastQuery: queryParams,
-        lastTheme: lastTheme,
       });
     } catch (error) {
       // if error encountered during API call, log it to the console
