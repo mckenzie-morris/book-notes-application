@@ -10,7 +10,7 @@ export default {
   mode: "development",
   /* automatically update the dist folder when source files change.
   in DevServer, watch mode is enabled by default */
-  // watch: true,
+  watch: true,
   entry: {
     index: path.resolve(__dirname, "src/main.js"),
     notes: path.resolve(__dirname, "src/notes.js"),

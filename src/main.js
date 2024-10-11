@@ -10,9 +10,14 @@ import axios from "axios";
 
 // on document ready
 $(() => {
-  // initialize the html to light theme
-  $("html").addClass("light");
-  $("#themeToggleContainer").addClass("light");
+  const theme = localStorage.getItem("theme");
+
+  if (theme && theme === "dark") {
+    $("#themeToggle").prop("checked", true);
+    $("html").toggleClass("light dark");
+    $("#themeToggleContainer").toggleClass("light dark");
+    darkTheme();
+  }
 
   // dynamically-generated data sent from server to data-* attributes on '#user_input'
   // will be an empty object literal before first query is made
@@ -48,19 +53,35 @@ theme to the setting prior to the API call and page render */
   });
 });
 
+const lightTheme = () => {
+  $("#themeIcon").attr("src", "/light-icon.svg");
+  $(".accordionChevron").attr("src", "/chevron-light.svg");
+  $(".editButtons").attr("src", "/edit-light.svg");
+  $(".deleteButtons").attr("src", "/delete-light.svg");
+  $(".emptyMugs").attr("src", "empty-mugs-light.svg");
+};
+
+const darkTheme = () => {
+  $("#themeIcon").attr("src", "/dark-icon.svg");
+  $(".accordionChevron").attr("src", "/chevron-dark.svg");
+  $(".editButtons").attr("src", "/edit-dark.svg");
+  $(".deleteButtons").attr("src", "/delete-dark.svg");
+  $(".emptyMugs").attr("src", "empty-mugs-dark.svg");
+};
+
 /* if the '#themeToggle' button is clicked, swap theme 
 from 'light' to 'dark', or 'dark' to 'light' */
 $("#themeToggle").on("click", () => {
   if ($("html")[0].className === "light") {
     $("html").toggleClass("light dark");
     $("#themeToggleContainer").toggleClass("light dark");
-    $("#themeIcon").attr("src", "dark-icon.svg");
-    $(".emptyMugs").attr("src", "empty-mugs-dark.svg");
+    darkTheme();
+    localStorage.setItem("theme", "dark");
   } else if ($("html")[0].className === "dark") {
     $("html").toggleClass("dark light");
     $("#themeToggleContainer").toggleClass("dark light");
-    $("#themeIcon").attr("src", "light-icon.svg");
-    $(".emptyMugs").attr("src", "empty-mugs-light.svg");
+    lightTheme();
+    localStorage.setItem("theme", "light");
   }
 });
 
@@ -118,7 +139,10 @@ $(".queryResultItem").on("click", async function () {
   // initialize local variables
   let mugsIdx;
   let mugsIdxArr = [];
-  let previousSrc = "empty-mugs-light.svg";
+  let previousSrc;
+  if (localStorage.getItem("theme")) {
+    previousSrc = `empty-mugs-${localStorage.getItem("theme")}.svg`;
+  } else previousSrc = `empty-mugs-${$("html")[0].className}.svg`;
   // toggle empty mugs icons from 'light'/'dark' background
   $("#themeToggle").on("change", () => {
     if ($("html")[0].className === "dark") {
