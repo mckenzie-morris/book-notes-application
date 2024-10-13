@@ -17,10 +17,12 @@
     "@designbycode/tailwindcss-text-shadow": "^2.1.0",
     "animate.css": "^4.1.1",
     "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "fluid-tailwind": "^1.0.3",
-    "jquery": "^3.7.1"
+    "jquery": "^3.7.1",
+    "pg": "^8.13.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.9",
