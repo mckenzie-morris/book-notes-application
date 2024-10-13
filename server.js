@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import {
   rootController,
+  notesController,
   searchController,
   queryResults,
   queryCache,
@@ -27,7 +28,7 @@ app.get("/", (req, res) => {
 });
 
 app.get('/notes', (req, res) => {
-  return res.render("./notes-page/index.ejs");
+  notesController(req, res)
 })
 
 // render homepage + query results at '/search' endpoint

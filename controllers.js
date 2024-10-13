@@ -7,6 +7,10 @@ const rootController = (req, res) => {
   return res.render("./home-page/index.ejs", { queryResults: queryResults });
 };
 
+const notesController = (req, res) => {
+  return res.render("./notes-page/index.ejs");
+}
+
 const searchController = async (req, res) => {
   console.log(req.body);
 
@@ -52,4 +56,4 @@ const searchController = async (req, res) => {
   }
 };
 
-export { rootController, searchController, queryResults, queryCache };
+export { rootController, notesController, searchController, queryResults, queryCache };
