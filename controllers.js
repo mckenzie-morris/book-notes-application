@@ -5,7 +5,6 @@ import db from "./db.js";
 let queryResults = undefined;
 const queryCache = {};
 
-
 db.connect().catch((err) => {
   console.error("Error connecting to database", err);
 });
@@ -15,23 +14,22 @@ const rootController = (req, res) => {
 };
 
 const notesController = async (req, res) => {
-  const getAllReviews = async () => {
-    try {
-      const query = {
-        text: "SELECT * FROM reviews",
-      };
-      const result = await db.query(query);
-      return result.rows;
-    } catch (error) {
-      console.error("Error fetching items", error);
-      return [];
-    }
-  };
+  let result;
+  try {
+    const dbQuery = {
+      text: "SELECT * FROM reviews",
+    };
+    result = await db.query(dbQuery);
 
-  const items = await getAllReviews();
-  console.log(items);
-
-  return res.render("./notes-page/index.ejs");
+    console.log(result.rows);
+    return result;
+  } catch (error) {
+    console.error("Error fetching items", error);
+    return error;
+  } 
+  finally {
+    return res.render("./notes-page/index.ejs", { dbResults: result.rows || []});
+  }
 };
 
 const searchController = async (req, res) => {
@@ -79,11 +77,33 @@ const searchController = async (req, res) => {
   }
 };
 
-const reviewController = (req, res) => {
+const reviewController = async (req, res) => {
   console.log(JSON.parse(req.body.selectedBreweryDetails));
-  console.log(req.body.reviewText)
-  console.log(req.body.selectedRating)
-  res.redirect('/')
+  console.log(req.body.reviewText);
+  console.log(req.body.selectedRating);
+  const breweryData = JSON.parse(req.body.selectedBreweryDetails);
+
+  try {
+    const dbQuery = {
+      text: "INSERT INTO reviews (id, name, street_address, city, state, postal_code, country, user_review, user_rating) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
+      values: [
+        breweryData.id,
+        breweryData.name,
+        breweryData.address_1,
+        breweryData.city,
+        breweryData.state_province,
+        breweryData.postal_code,
+        breweryData.country,
+        req.body.reviewText,
+        req.body.selectedRating,
+      ],
+    };
+    const result = await db.query(dbQuery);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    res.redirect("/");
+  }
 };
 
 export {
