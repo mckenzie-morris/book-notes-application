@@ -6,6 +6,7 @@ import {
   notesController,
   searchController,
   reviewController,
+  deleteController,
   queryResults,
   queryCache,
 } from "./controllers.js";
@@ -40,6 +41,10 @@ app.post("/review", (req, res) => {
 app.get("/notes", (req, res) => {
   notesController(req, res);
 });
+
+app.post('/delete', (req, res) => {
+  deleteController(req, res)
+})
 
 // any route not defined is 404'ed
 app.use("*", (req, res) => {

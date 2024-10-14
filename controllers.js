@@ -26,9 +26,10 @@ const notesController = async (req, res) => {
   } catch (error) {
     console.error("Error fetching items", error);
     return error;
-  } 
-  finally {
-    return res.render("./notes-page/index.ejs", { dbResults: result.rows || []});
+  } finally {
+    return res.render("./notes-page/index.ejs", {
+      dbResults: result.rows || [],
+    });
   }
 };
 
@@ -106,11 +107,29 @@ const reviewController = async (req, res) => {
   }
 };
 
+const deleteController = async (req, res) => {
+  console.log(req.body.deleteId);
+
+  try {
+    const dbQuery = {
+      text: "DELETE FROM reviews WHERE id = $1 RETURNING *;",
+      values: [req.body.deleteId],
+    };
+    const result = await db.query(dbQuery);
+    console.log(result.rows, 'DELETED ❌')
+  } catch (error) {
+    console.error(error);
+  } finally {
+    res.redirect("/notes");
+  }
+};
+
 export {
   rootController,
   notesController,
   searchController,
   reviewController,
+  deleteController,
   queryResults,
   queryCache,
 };

@@ -12,20 +12,28 @@
 </div>
 
 <!-- accordion -->
+
 <div
-  class="accordionWrapper absolute top-[50%] w-full rounded-xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme px-1.5 py-[.03125rem] shadow-xl shadow-tertiaryTheme/50 sm:~w-[40rem]/[70rem]"
+data-reviews_array="<%=JSON.stringify(dbResults)%>"
+class="accordionWrapper absolute top-[50%] w-full rounded-xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme px-1.5 py-[.03125rem] shadow-xl shadow-tertiaryTheme/50 sm:~w-[40rem]/[70rem]"
 >
-  <!-- accordion heading 1 -->
+<% if (!locals.dbResults.length) { %> 
+<h1 class="josefin-sans-importFont p-3 text-center font-extrabold text-primaryTheme ~text-xl/5xl">Return home to write a review!</h1>
+<%  } %>
+<!-- accordion heading 1 -->
+<% if (locals.dbResults) { %> 
+
+    <% dbResults.forEach((elmt, idx) => { %>  
   <div
+    id = "<%=elmt.id%>"
     class="relative my-2 rounded-md bg-secondaryTheme py-2 pe-10 ps-3 font-bold text-quaternaryTheme ~text-lg/4xl"
   >
     <h1 class="ps-3">
-      Crux Brewery | 12345 main st. Oregon City, OR 97045 |
-      April&nbsp;9th,&nbsp;2024
+      <%=elmt.name%> | <%=elmt.street_address%>, <%=elmt.city%>, <%=elmt.state%> <%=elmt.postal_code%> | <%=elmt.country%>
     </h1>
-    <input id="header1Input" type="checkbox" class="peer hidden" />
+    <input id="headerInput_<%= idx %>" type="checkbox" class="peer hidden" />
     <label
-      for="header1Input"
+      for="headerInput_<%= idx %>"
       class="absolute inset-0 z-10 h-full w-full cursor-pointer rounded-md bg-transparent"
     ></label>
     <img
@@ -39,77 +47,70 @@
       <div class="mb-3 flex font-bold ~text-lg/4xl">
         Rating:
         <img
-          id="emptyMugs0"
+          id="emptyMugs0_<%= idx %>"
           class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
           src="empty-mugs-light.svg"
         />
         <img
-          id="emptyMugs1"
+          id="emptyMugs1_<%= idx %>"
           class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
           src="empty-mugs-light.svg"
         />
         <img
-          id="emptyMugs2"
+          id="emptyMugs2_<%= idx %>"
           class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
           src="empty-mugs-light.svg"
         />
         <img
-          id="emptyMugs3"
+          id="emptyMugs3_<%= idx %>"
           class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
           src="empty-mugs-light.svg"
         />
         <img
-          id="emptyMugs4"
+          id="emptyMugs4_<%= idx %>"
           class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
           src="empty-mugs-light.svg"
         />
         <img
-          id="emptyMugs5"
+          id="emptyMugs5_<%= idx %>"
           class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
           src="empty-mugs-light.svg"
         />
         <img
-          id="emptyMugs6"
+          id="emptyMugs6_<%= idx %>"
           class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
           src="empty-mugs-light.svg"
         />
         <img
-          id="emptyMugs7"
+          id="emptyMugs7_<%= idx %>"
           class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
           src="empty-mugs-light.svg"
         />
         <img
-          id="emptyMugs8"
+          id="emptyMugs8_<%= idx %>"
           class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
           src="empty-mugs-light.svg"
         />
         <img
-          id="emptyMugs9"
+          id="emptyMugs9_<%= idx %>"
           class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
           src="empty-mugs-light.svg"
         />
       </div>
       <p class="relative z-20 overflow-y-auto ~max-h-[9.375rem]/[12.5rem]">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit
-        adipisci veniam reiciendis laudantium voluptatem in incidunt! Quod
-        doloribus nostrum autem! Lorem ipsum dolor, sit amet consectetur
-        adipisicing elit. Impedit adipisci veniam reiciendis laudantium Lorem
-        ipsum dolor, sit amet consectetur adipisicing elit. Impedit adipisci
-        veniam reiciendis laudantium voluptatem in incidunt! Quod doloribus
-        nostrum autem! Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Impedit adipisci veniam reiciendis laudantium
+        <%=elmt.user_review%>
       </p>
       <div
         class="float-end mt-2 inline-flex transition-all duration-300 ease-in-out"
       >
         <img
-          id="editButton1"
+          id="editButton_<%= idx %>"
           src="edit-light.svg"
           class="editButtons z-20 mx-2 rounded-xl border-4 border-quaternaryTheme p-1 shadow-md shadow-tertiaryTheme ~h-[2.5rem]/[4rem] ~w-[2.5rem]/[4rem] hover:cursor-pointer active:scale-95 active:shadow-inner"
         />
         <label class="z-20 rounded-xl" for="confirmationModalToggle">
           <img
-            id="deleteButton1"
+            id="deleteButton_<%= idx %>"
             src="delete-light.svg"
             class="deleteButtons z-20 rounded-xl border-4 border-quaternaryTheme p-2 shadow-md shadow-tertiaryTheme ~h-[2.5rem]/[4rem] ~w-[2.5rem]/[4rem] hover:cursor-pointer active:scale-95 active:shadow-inner"
           />
@@ -117,5 +118,7 @@
       </div>
     </div>
   </div>
+  <%  })} %>
+
   <!-- / accordion heading 1 -->
 </div>

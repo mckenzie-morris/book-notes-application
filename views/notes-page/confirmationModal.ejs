@@ -29,12 +29,15 @@
       >
         Close
       </label>
-      <button
-        class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:bg-gradient-to-r active:scale-95 active:shadow-inner"
-      >
-        Delete!
-      </button>
+      <form id="delete" action="/delete" method="POST">
+        <input type="hidden" id="deleteId" name="deleteId" />
+        <button
+          type="submit"
+          class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:bg-gradient-to-r active:scale-95 active:shadow-inner"
+        >
+          Delete!
+        </button>
+      </form>
     </div>
   </div>
 </div>
-

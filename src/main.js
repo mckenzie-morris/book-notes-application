@@ -21,7 +21,7 @@ $(() => {
 
   const lastQuery = sessionStorage.getItem("submittedQuery");
   if (lastQuery) {
-    // dynamically-generated data sent from server to data-* attributes on '#user_input'
+    // dynamically-generated data sent from server to data-* attribute on '#user_input'
     const serverData = $("#user_input").data();
     console.log(serverData.query_results);
 
