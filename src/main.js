@@ -10,13 +10,6 @@ import axios from "axios";
 
 //////////////////////////////////// On Document Ready ////////////////////////////////////
 $(() => {
-  // render 'notes' page at '/notes' endpoint when 'notesButton' is clicked
-  $("#notesButton").on("click", () => {
-    $("#resultsList").empty();
-    window.location.href = "/notes";
-    sessionStorage.removeItem("submittedQuery");
-  });
-
   const theme = localStorage.getItem("theme");
   // toggle theme to 'dark' upon document ready (default is 'light')
   if (theme && theme === "dark") {
@@ -38,6 +31,14 @@ $(() => {
 
     $("#user_input").val(sessionStorage.getItem("submittedQuery"));
   }
+});
+
+//////////////////////////////////// Navigation Button ////////////////////////////////////
+// render 'notes' page at '/notes' endpoint when 'notesButton' is clicked
+$("#notesButton").on("click", () => {
+  $("#resultsList").empty();
+  sessionStorage.removeItem("submittedQuery");
+  window.location.href = "/notes";
 });
 
 //////////////////////////////////// Theme Control ////////////////////////////////////
@@ -103,13 +104,13 @@ $(".queryResultItem").on("click", async function () {
 
   if (breweryId in modalCache) {
     console.log(modalCache[breweryId], "FOUND in cache!");
+    $('#selectedBreweryDetails').val(modalCache[breweryId])
 
     $("#modalBrewerySelectionAddress").text(
       `${modalCache[breweryId].address_1}, ${modalCache[breweryId].city}, ${modalCache[breweryId].state} ${modalCache[breweryId].postal_code}`,
     );
     $("#modalBrewerySelectionCountry").text(`${modalCache[breweryId].country}`);
-  } 
-  else {
+  } else {
     // make axios GET request to obtain location data
     try {
       console.log("NOT found in cache!");
@@ -121,6 +122,7 @@ $(".queryResultItem").on("click", async function () {
         },
       );
       console.log(response.data);
+      $('#selectedBreweryDetails').val(JSON.stringify(response.data))
       $("#modalBrewerySelectionAddress").text(
         `${response.data.address_1}, ${response.data.city}, ${response.data.state} ${response.data.postal_code}`,
       );
@@ -167,11 +169,14 @@ $(".queryResultItem").on("click", async function () {
     mugsIdx = $(this).attr("id").slice(-1);
     mugsIdxArr.push(mugsIdx);
 
+    // pass selected rating to hidden input for review submission
+    $("#selectedRating").val(Number(mugsIdxArr[mugsIdx.length - 1]) + 1);
+
     // flip empty mugs to full mugs
-    if (mugsIdx > mugsIdxArr[mugsIdxArr.length - 2]) {
+    if (mugsIdxArr.length < 2 || mugsIdx > mugsIdxArr[mugsIdxArr.length - 2]) {
       mugsLoop(mugsIdxArr[mugsIdxArr.length - 2], mugsIdx, "full-mugs.svg");
       // remove unnecessary data
-      mugsIdxArr.shift();
+      mugsIdxArr = [mugsIdx];
     }
 
     /* if rating is selected, and the same rating is clicked again, reset rating and enable 
@@ -179,6 +184,8 @@ $(".queryResultItem").on("click", async function () {
     if (mugsIdx === mugsIdxArr[mugsIdxArr.length - 2]) {
       mugsLoop(0, mugsIdx, previousSrc);
       mugsIdxArr.length = 0;
+      // reset
+      $("#selectedRating").val(0);
     }
     // reset any superfluous full mugs to empty (if necessary)
     else if (mugsIdx < mugsIdxArr[mugsIdxArr.length - 2]) {
@@ -186,7 +193,7 @@ $(".queryResultItem").on("click", async function () {
         $(`#emptyMugs${i}`).attr("src", previousSrc);
       }
       // remove unnecessary data
-      mugsIdxArr.shift();
+      mugsIdxArr = [mugsIdx];
     }
   });
 
@@ -205,10 +212,11 @@ $(".queryResultItem").on("click", async function () {
       }
     });
 
-  // if the modal is closed, reset rating to blank
+  // if the modal is closed, reset rating to blank (and clear text area)
   $("#modalToggle").on("change", () => {
     if ($("#modalToggle").prop("checked") === false) {
       mugsLoop(0, mugsIdx, previousSrc);
+      $("#reviewText").val("");
     }
     mugsIdxArr.length = 0;
   });

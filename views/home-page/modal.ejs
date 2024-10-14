@@ -19,8 +19,14 @@
       id="modalBrewerySelection"
       class="josefin-sans-importFont self-center p-3 text-center font-extrabold text-tertiaryTheme ~text-xl/5xl"
     ></h1>
-    <h2 id="modalBrewerySelectionAddress" class="josefin-sans-importFont self-center p-1 text-center font-extrabold text-tertiaryTheme ~text-base/3xl"></h2>
-    <h2 id="modalBrewerySelectionCountry" class="josefin-sans-importFont self-center p-1 text-center font-extrabold text-tertiaryTheme ~text-base/3xl"></h2>
+    <h2
+      id="modalBrewerySelectionAddress"
+      class="josefin-sans-importFont self-center p-1 text-center font-extrabold text-tertiaryTheme ~text-base/3xl"
+    ></h2>
+    <h2
+      id="modalBrewerySelectionCountry"
+      class="josefin-sans-importFont self-center p-1 text-center font-extrabold text-tertiaryTheme ~text-base/3xl"
+    ></h2>
     <div>
       <h2
         class="josefin-sans-importFont flex items-center p-3 font-extrabold text-quaternaryTheme ~text-xl/5xl"
@@ -79,24 +85,39 @@
         />
       </h2>
     </div>
-    <textarea
-      class="mx-2 my-auto bg-primaryTheme font-medium text-quaternaryTheme ~text-base/3xl ~h-[10rem]/[20rem]"
-    ></textarea>
-    <div
-      class="josefin-sans-importFont flex flex-grow items-center justify-evenly p-3 ~text-base/3xl"
+    <form
+      class="flex flex-col"
+      id="submitNewReview"
+      action="/review"
+      method="POST"
     >
-      <label
-        for="modalToggle"
-        id="closeModal"
-        class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme text-center font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:cursor-pointer hover:bg-gradient-to-br active:scale-95 active:shadow-inner"
+      <input type="hidden" id="selectedBreweryDetails" name="selectedBreweryDetails" />
+      <textarea
+        id="reviewText"
+        name="reviewText"
+        placeholder="Write your review..."
+        class="my-auto min-w-full bg-primaryTheme px-2 py-1 font-medium text-quaternaryTheme ~text-base/3xl ~h-[10rem]/[20rem]"
+      ></textarea>
+      <input type="hidden" id="selectedRating" name="selectedRating" />
+      <div
+        class="josefin-sans-importFont flex flex-grow items-center justify-evenly p-3 ~text-base/3xl"
       >
-        Close
-      </label>
-      <button
-        class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:bg-gradient-to-r active:scale-95 active:shadow-inner"
-      >
-        Post Review!
-      </button>
-    </div>
+        <label
+          for="modalToggle"
+          id="closeModal"
+          class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme text-center font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:cursor-pointer hover:bg-gradient-to-br active:scale-95 active:shadow-inner"
+        >
+          Close
+        </label>
+
+        <button
+          id="submitNewReviewButton"
+          type="submit"
+          class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:bg-gradient-to-r active:scale-95 active:shadow-inner"
+        >
+          Post Review!
+        </button>
+      </div>
+    </form>
   </div>
 </div>

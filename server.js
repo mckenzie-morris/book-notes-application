@@ -5,6 +5,7 @@ import {
   rootController,
   notesController,
   searchController,
+  reviewController,
   queryResults,
   queryCache,
 } from "./controllers.js";
@@ -27,13 +28,17 @@ app.get("/", (req, res) => {
   rootController(req, res);
 });
 
-app.get('/notes', (req, res) => {
-  notesController(req, res)
-})
-
-// render homepage + query results at '/search' endpoint
-app.post("/search", (req, res) => {
+// render homepage + query results at root
+app.post("/", (req, res) => {
   searchController(req, res);
+});
+
+app.post("/review", (req, res) => {
+  reviewController(req, res);
+});
+
+app.get("/notes", (req, res) => {
+  notesController(req, res);
 });
 
 // any route not defined is 404'ed

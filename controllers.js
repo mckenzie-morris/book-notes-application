@@ -1,15 +1,38 @@
 import axios from "axios";
+import db from "./db.js";
+
 // initialize query data and cache
 let queryResults = undefined;
 const queryCache = {};
+
+
+db.connect().catch((err) => {
+  console.error("Error connecting to database", err);
+});
 
 const rootController = (req, res) => {
   return res.render("./home-page/index.ejs", { queryResults: queryResults });
 };
 
-const notesController = (req, res) => {
+const notesController = async (req, res) => {
+  const getAllReviews = async () => {
+    try {
+      const query = {
+        text: "SELECT * FROM reviews",
+      };
+      const result = await db.query(query);
+      return result.rows;
+    } catch (error) {
+      console.error("Error fetching items", error);
+      return [];
+    }
+  };
+
+  const items = await getAllReviews();
+  console.log(items);
+
   return res.render("./notes-page/index.ejs");
-}
+};
 
 const searchController = async (req, res) => {
   console.log(req.body);
@@ -56,4 +79,18 @@ const searchController = async (req, res) => {
   }
 };
 
-export { rootController, notesController, searchController, queryResults, queryCache };
+const reviewController = (req, res) => {
+  console.log(JSON.parse(req.body.selectedBreweryDetails));
+  console.log(req.body.reviewText)
+  console.log(req.body.selectedRating)
+  res.redirect('/')
+};
+
+export {
+  rootController,
+  notesController,
+  searchController,
+  reviewController,
+  queryResults,
+  queryCache,
+};

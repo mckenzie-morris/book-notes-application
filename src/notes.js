@@ -11,11 +11,6 @@ import $ from "jquery";
 
 //////////////////////////////////// On Document Ready ////////////////////////////////////
 $(() => {
-  // render 'index' page at root endpoint when 'returnHomeButton' is clicked
-  $("#returnHomeButton").on("click", () => {
-    window.location.href = "/";
-  });
-
   const theme = localStorage.getItem("theme");
 
   if (theme && theme === "dark") {
@@ -24,6 +19,12 @@ $(() => {
     $("#themeToggleContainer").toggleClass("light dark");
     darkTheme();
   }
+});
+
+//////////////////////////////////// Navigation Button ////////////////////////////////////
+// render 'index' page at root endpoint when 'returnHomeButton' is clicked
+$("#returnHomeButton").on("click", () => {
+  window.location.href = "/";
 });
 
 //////////////////////////////////// Theme Control ////////////////////////////////////
