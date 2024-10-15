@@ -34,7 +34,7 @@ class="accordionWrapper absolute top-[50%] w-full rounded-xl bg-gradient-to-r fr
     <h1 class="ps-3 mt-2">
       <%=elmt.street_address%>, <%=elmt.city%>, <%=elmt.state%> <%=elmt.postal_code%>
     </h1>
-    <h1 class="ps-3 my-2"><%=elmt.country%></h1>
+    <h1 class="ps-3 mt-2"><%=elmt.country%></h1>
     <input id="headerInput_<%= idx %>" type="checkbox" class="peer hidden" />
     <label
       for="headerInput_<%= idx %>"
@@ -46,72 +46,75 @@ class="accordionWrapper absolute top-[50%] w-full rounded-xl bg-gradient-to-r fr
       alt="Image description"
     />
     <div
-      class="h-0 w-full overflow-hidden font-medium text-tertiaryTheme transition-all duration-100 ease-in-out ~text-sm/2xl peer-checked:h-full peer-checked:p-3"
+      class="h-0 w-full overflow-y-hidden relative z-20 font-medium text-tertiaryTheme transition-all duration-100 ease-in-out ~text-sm/2xl peer-checked:h-full peer-checked:p-3"
     >
-      <div class="mb-3 flex font-bold ~text-lg/4xl">
+      <div class="mb-3 text-wrap flex flex-wrap font-bold ~text-lg/4xl">
         Rating:
         <img
           id="emptyMugs0_<%= idx %>"
-          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem]"
           src="empty-mugs-light.svg"
         />
         <img
           id="emptyMugs1_<%= idx %>"
-          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem]"
           src="empty-mugs-light.svg"
         />
         <img
           id="emptyMugs2_<%= idx %>"
-          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem]"
           src="empty-mugs-light.svg"
         />
         <img
           id="emptyMugs3_<%= idx %>"
-          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem]"
           src="empty-mugs-light.svg"
         />
         <img
           id="emptyMugs4_<%= idx %>"
-          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem]"
           src="empty-mugs-light.svg"
         />
         <img
           id="emptyMugs5_<%= idx %>"
-          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem]"
           src="empty-mugs-light.svg"
         />
         <img
           id="emptyMugs6_<%= idx %>"
-          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem]"
           src="empty-mugs-light.svg"
         />
         <img
           id="emptyMugs7_<%= idx %>"
-          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem]"
           src="empty-mugs-light.svg"
         />
         <img
           id="emptyMugs8_<%= idx %>"
-          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem]"
           src="empty-mugs-light.svg"
         />
         <img
           id="emptyMugs9_<%= idx %>"
-          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem]"
           src="empty-mugs-light.svg"
         />
       </div>
-      <p class="relative z-20 overflow-y-auto ~max-h-[9.375rem]/[12.5rem]">
+      <p class="overflow-y-auto ~max-h-[9.375rem]/[12.5rem]">
         <%=elmt.user_review%>
       </p>
       <div
         class="float-end mt-2 inline-flex transition-all duration-300 ease-in-out"
       >
-        <img
-          id="editButton_<%= idx %>"
-          src="edit-light.svg"
-          class="editButtons z-20 mx-2 rounded-xl border-4 border-quaternaryTheme p-1 shadow-md shadow-tertiaryTheme ~h-[2.5rem]/[4rem] ~w-[2.5rem]/[4rem] hover:cursor-pointer active:scale-95 active:shadow-inner"
-        />
+        <label class="z-20 rounded-xl" for="editModalToggle">
+          <img
+            id="editButton_<%= idx %>"
+            src="edit-light.svg"
+            class="editButtons z-20 rounded-xl border-4 border-quaternaryTheme p-1 shadow-md shadow-tertiaryTheme ~h-[2.5rem]/[4rem] ~w-[2.5rem]/[4rem] hover:cursor-pointer active:scale-95 active:shadow-inner"
+          />
+        </label>
+        <span class="~w-[.5rem]/[1rem]"></span>
         <label class="z-20 rounded-xl" for="confirmationModalToggle">
           <img
             id="deleteButton_<%= idx %>"

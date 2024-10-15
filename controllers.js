@@ -116,12 +116,17 @@ const deleteController = async (req, res) => {
       values: [req.body.deleteId],
     };
     const result = await db.query(dbQuery);
-    console.log(result.rows, 'DELETED ❌')
+    console.log(result.rows, "DELETED ❌");
   } catch (error) {
     console.error(error);
   } finally {
     res.redirect("/notes");
   }
+};
+
+const editController = async (req, res) => {
+  console.log('🚩🚩🚩🚩', req.body, '🚩🚩🚩🚩');
+  res.redirect("/notes");
 };
 
 export {
@@ -130,6 +135,7 @@ export {
   searchController,
   reviewController,
   deleteController,
+  editController,
   queryResults,
   queryCache,
 };

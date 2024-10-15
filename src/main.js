@@ -184,7 +184,7 @@ $(".queryResultItem").on("click", async function () {
     if (mugsIdx === mugsIdxArr[mugsIdxArr.length - 2]) {
       mugsLoop(0, mugsIdx, previousSrc);
       mugsIdxArr.length = 0;
-      // reset
+      // reset hidden input rating
       $("#selectedRating").val(0);
     }
     // reset any superfluous full mugs to empty (if necessary)
