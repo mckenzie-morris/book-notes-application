@@ -20,15 +20,15 @@ const notesController = async (req, res) => {
       text: "SELECT * FROM reviews",
     };
     result = await db.query(dbQuery);
-
-    console.log(result.rows);
+    console.log(result.rows, "RETRIEVED 📫");
     return result;
   } catch (error) {
     console.error("Error fetching items", error);
     return error;
   } finally {
     return res.render("./notes-page/index.ejs", {
-      dbResults: result.rows || [],
+      // reverse to show latest added/edited review at top of list
+      dbResults: result.rows.reverse() || [],
     });
   }
 };
@@ -79,9 +79,6 @@ const searchController = async (req, res) => {
 };
 
 const reviewController = async (req, res) => {
-  console.log(JSON.parse(req.body.selectedBreweryDetails));
-  console.log(req.body.reviewText);
-  console.log(req.body.selectedRating);
   const breweryData = JSON.parse(req.body.selectedBreweryDetails);
 
   try {
@@ -100,6 +97,7 @@ const reviewController = async (req, res) => {
       ],
     };
     const result = await db.query(dbQuery);
+    console.log(result.rows, "ADDED ✅");
   } catch (error) {
     console.error(error);
   } finally {
@@ -108,8 +106,6 @@ const reviewController = async (req, res) => {
 };
 
 const deleteController = async (req, res) => {
-  console.log(req.body.deleteId);
-
   try {
     const dbQuery = {
       text: "DELETE FROM reviews WHERE id = $1 RETURNING *;",
@@ -125,8 +121,22 @@ const deleteController = async (req, res) => {
 };
 
 const editController = async (req, res) => {
-  console.log('🚩🚩🚩🚩', req.body, '🚩🚩🚩🚩');
-  res.redirect("/notes");
+  try {
+    const dbQuery = {
+      text: "UPDATE reviews SET user_rating = $1, user_review = $2 WHERE id = $3 RETURNING *",
+      values: [
+        req.body.editedRating,
+        req.body.editedReviewText,
+        req.body.editId,
+      ],
+    };
+    const result = await db.query(dbQuery);
+    console.log(result.rows, "EDITED ✏️");
+  } catch (error) {
+    console.log(error);
+  } finally {
+    res.redirect("/notes");
+  }
 };
 
 export {

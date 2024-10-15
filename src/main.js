@@ -83,7 +83,7 @@ $("#user_input").on("input", () => {
       // store the query in the current session
       sessionStorage.setItem("submittedQuery", $("#user_input").val());
       $("#search").trigger("submit");
-    }, 1000);
+    }, 500);
     /* if user begins typing before necessary time has elapsed, reset timer and 
   eliminate pending function execution */
     $("#user_input").on("input", () => {

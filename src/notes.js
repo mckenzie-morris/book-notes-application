@@ -55,17 +55,10 @@ $(() => {
       "placeholder",
       reviewsArray[editButtonIdx].user_review,
     );
-
-    // assign appropriate rating in edit modal
-    $(`#emptyMugs${reviewsArray[editButtonIdx].user_rating - 1}`).trigger(
-      "click",
-    );
-
     // initialize hidden input for edit submission
     $("#editedRating").val(reviewsArray[editButtonIdx].user_rating);
   });
 });
-
 //////////////////////////////////// Navigation Button ////////////////////////////////////
 // render 'index' page at root endpoint when 'returnHomeButton' is clicked
 $("#returnHomeButton").on("click", () => {
