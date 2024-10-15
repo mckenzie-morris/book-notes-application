@@ -28,9 +28,13 @@ class="accordionWrapper absolute top-[50%] w-full rounded-xl bg-gradient-to-r fr
     id = "<%=elmt.id%>"
     class="relative my-2 rounded-md bg-secondaryTheme py-2 pe-10 ps-3 font-bold text-quaternaryTheme ~text-lg/4xl"
   >
-    <h1 class="ps-3">
-      <%=elmt.name%> | <%=elmt.street_address%>, <%=elmt.city%>, <%=elmt.state%> <%=elmt.postal_code%> | <%=elmt.country%>
+    <h1 class="ps-3 mb-2">
+      <%=elmt.name%> 
     </h1>
+    <h1 class="ps-3 mt-2">
+      <%=elmt.street_address%>, <%=elmt.city%>, <%=elmt.state%> <%=elmt.postal_code%>
+    </h1>
+    <h1 class="ps-3 my-2"><%=elmt.country%></h1>
     <input id="headerInput_<%= idx %>" type="checkbox" class="peer hidden" />
     <label
       for="headerInput_<%= idx %>"

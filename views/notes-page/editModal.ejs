@@ -1,0 +1,123 @@
+<!-- modal toggle -->
+<input type="checkbox" id="editModalToggle" class="peer hidden" />
+<!-- modal backdrop/wrapper -->
+<label
+  for="editModalToggle"
+  class="fixed inset-0 z-30 hidden bg-black bg-opacity-50 peer-checked:block"
+></label>
+<!-- modal gradient background -->
+<div
+  id="editModalBackground"
+  class="animate__animated animate__zoomIn fixed inset-y-2/4 z-30 hidden w-fit self-center rounded-3xl bg-gradient-to-r from-secondaryTheme via-tertiaryTheme to-quaternaryTheme p-2 shadow-lg shadow-tertiaryTheme peer-checked:block"
+>
+  <!-- modal content -->
+  <div
+    id="editModalBox"
+    class="z-30 flex h-fit flex-col rounded-2xl bg-secondaryTheme ~w-[25rem]/[50rem]"
+  >
+    <h1
+      id="modalBrewerySelection"
+      class="josefin-sans-importFont self-center p-3 text-center font-extrabold text-tertiaryTheme ~text-xl/5xl"
+    ></h1>
+    <h2
+      id="modalBrewerySelectionAddress"
+      class="josefin-sans-importFont self-center p-1 text-center font-extrabold text-tertiaryTheme ~text-base/3xl"
+    ></h2>
+    <h2
+      id="modalBrewerySelectionCountry"
+      class="josefin-sans-importFont self-center p-1 text-center font-extrabold text-tertiaryTheme ~text-base/3xl"
+    ></h2>
+    <div>
+      <h2
+        class="josefin-sans-importFont flex items-center p-3 font-extrabold text-quaternaryTheme ~text-xl/5xl"
+      >
+        Rating:
+
+        <img
+          id="emptyMugs0"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          src="empty-mugs-light.svg"
+        />
+        <img
+          id="emptyMugs1"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          src="empty-mugs-light.svg"
+        />
+        <img
+          id="emptyMugs2"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          src="empty-mugs-light.svg"
+        />
+        <img
+          id="emptyMugs3"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          src="empty-mugs-light.svg"
+        />
+        <img
+          id="emptyMugs4"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          src="empty-mugs-light.svg"
+        />
+        <img
+          id="emptyMugs5"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          src="empty-mugs-light.svg"
+        />
+        <img
+          id="emptyMugs6"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          src="empty-mugs-light.svg"
+        />
+        <img
+          id="emptyMugs7"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          src="empty-mugs-light.svg"
+        />
+        <img
+          id="emptyMugs8"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          src="empty-mugs-light.svg"
+        />
+        <img
+          id="emptyMugs9"
+          class="emptyMugs ml-2 ~h-[1.5rem]/[3rem] ~w-[1.5rem]/[3rem] hover:cursor-pointer"
+          src="empty-mugs-light.svg"
+        />
+      </h2>
+    </div>
+    <form
+      class="flex flex-col"
+      id="submitEdit"
+      action="/edit"
+      method="POST"
+    >
+      <input type="hidden" id="editId" name="editId" />
+      <textarea
+        id="editedReviewText"
+        name="editedReviewText"
+        placeholder="Write your review..."
+        class="my-auto min-w-full bg-primaryTheme px-2 py-1 font-medium text-quaternaryTheme ~text-base/3xl ~h-[10rem]/[20rem]"
+      ></textarea>
+      <input type="hidden" id="editedRating" name="editedRating" />
+      <div
+        class="josefin-sans-importFont flex flex-grow items-center justify-evenly p-3 ~text-base/3xl"
+      >
+        <label
+          for="editModalToggle"
+          id="closeEditModal"
+          class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme text-center font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:cursor-pointer hover:bg-gradient-to-br active:scale-95 active:shadow-inner"
+        >
+          Close
+        </label>
+
+        <button
+          id="submitEditButton"
+          type="submit"
+          class="mx-2 rounded-xl border-4 border-secondaryTheme bg-tertiaryTheme font-semibold text-secondaryTheme shadow-md shadow-tertiaryTheme ~w-[7.5rem]/[15rem] ~py-1/3 hover:bg-gradient-to-r active:scale-95 active:shadow-inner"
+        >
+          Post Review!
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
