@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default {
-  mode: "development",
+  mode: "production",
   /* automatically update the dist folder when source files change.
   in DevServer, watch mode is enabled by default */
   watch: true,

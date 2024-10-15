@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "build": "webpack",
-    "start": "nodemon server.js",
-    "dev": "concurrently \"npm run build\" \"npm run start\"",
-    "serve": "webpack server"
+    "server": "nodemon server.js",
+    "start": "concurrently \"npm run build\" \"npm run server\"",
+    "dev": "webpack server"
   },
   "keywords": [],
   "author": "",
